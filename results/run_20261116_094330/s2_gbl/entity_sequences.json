@@ -1,0 +1,24 @@
+{
+  "stage": "s2_gbl",
+  "unit": "entity_sequences",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:21Z",
+  "suite_version": "1.0.0",
+  "length_distribution": {
+    "n_entities": 13553,
+    "median_len": 4.0,
+    "p90_len": 46.0,
+    "p99_len": 786.4399999999987,
+    "max_len": 14932,
+    "entities_ge_256": 344,
+    "entities_ge_1024": 100
+  },
+  "n_sequences_built": 40,
+  "key": "card1",
+  "note": "mirror user_id is entirely NA; card1 used as entity key",
+  "assertions": {
+    "long_sequences_exist": true
+  }
+}

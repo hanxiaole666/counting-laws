@@ -1,0 +1,10 @@
+\begin{tabular}{lrrrrr}
+\toprule
+system & AUC-PR & AUC-ROC & R@FPR$=1\%$ & loss & cost/tx \\
+\midrule
+linear (logistic) & 0.1874 & 0.7573 & 14.0\% & 9{,}299 & 1.00 \\
+GBDT gate & 0.4551 & 0.8664 & 38.6\% & 6{,}653 & 1.00 \\
+GBDT strong & 0.4691 & 0.8734 & 40.2\% & 6{,}580 & 20.00 \\
+cascade (gate+strong) & 0.4711 & 0.8729 & 39.5\% & 6{,}552 & 19.08 \\
+\bottomrule
+\end{tabular}

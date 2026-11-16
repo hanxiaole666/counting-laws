@@ -1,0 +1,132 @@
+{
+  "stage": "s2_gbl",
+  "unit": "fidelity_ablation",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:21Z",
+  "suite_version": "1.0.0",
+  "rows": [
+    {
+      "mode": "narrative",
+      "fields_used": [
+        "TransactionAmt",
+        "ProductCD",
+        "card1",
+        "card2",
+        "card3",
+        "card4",
+        "card5",
+        "card6",
+        "addr1",
+        "dist1"
+      ],
+      "n_fields": 10,
+      "reverse_parse_recall": 1.0,
+      "numeric_relative_error_mean": 0.0,
+      "numeric_relative_error_p95": 0.0,
+      "tokens_per_event_mean": 22.016666666666666,
+      "tokens_per_event_p95": 22.0,
+      "probe_productcd_accuracy": 1.0,
+      "probe_note": "char n-gram logistic probe; field set identical across modes"
+    },
+    {
+      "mode": "key_value",
+      "fields_used": [
+        "TransactionAmt",
+        "ProductCD",
+        "card1",
+        "card2",
+        "card3",
+        "card4",
+        "card5",
+        "card6",
+        "addr1",
+        "dist1"
+      ],
+      "n_fields": 10,
+      "reverse_parse_recall": 1.0,
+      "numeric_relative_error_mean": 0.0,
+      "numeric_relative_error_p95": 0.0,
+      "tokens_per_event_mean": 10.016666666666667,
+      "tokens_per_event_p95": 10.0,
+      "probe_productcd_accuracy": 1.0,
+      "probe_note": "char n-gram logistic probe; field set identical across modes"
+    },
+    {
+      "mode": "markdown_table",
+      "fields_used": [
+        "TransactionAmt",
+        "ProductCD",
+        "card1",
+        "card2",
+        "card3",
+        "card4",
+        "card5",
+        "card6",
+        "addr1",
+        "dist1"
+      ],
+      "n_fields": 10,
+      "reverse_parse_recall": 1.0,
+      "numeric_relative_error_mean": 0.0,
+      "numeric_relative_error_p95": 0.0,
+      "tokens_per_event_mean": 30.016666666666666,
+      "tokens_per_event_p95": 30.0,
+      "probe_productcd_accuracy": 1.0,
+      "probe_note": "char n-gram logistic probe; field set identical across modes"
+    },
+    {
+      "mode": "csv",
+      "fields_used": [
+        "TransactionAmt",
+        "ProductCD",
+        "card1",
+        "card2",
+        "card3",
+        "card4",
+        "card5",
+        "card6",
+        "addr1",
+        "dist1"
+      ],
+      "n_fields": 10,
+      "reverse_parse_recall": 1.0,
+      "numeric_relative_error_mean": 0.0,
+      "numeric_relative_error_p95": 0.0,
+      "tokens_per_event_mean": 10.016666666666667,
+      "tokens_per_event_p95": 10.0,
+      "probe_productcd_accuracy": 1.0,
+      "probe_note": "char n-gram logistic probe; field set identical across modes"
+    },
+    {
+      "mode": "derived_only",
+      "fields_used": [
+        "TransactionAmt",
+        "ProductCD",
+        "card1",
+        "card2",
+        "card3",
+        "card4",
+        "card5",
+        "card6",
+        "addr1",
+        "dist1"
+      ],
+      "n_fields": 10,
+      "reverse_parse_recall": 0.0,
+      "numeric_relative_error_mean": null,
+      "numeric_relative_error_p95": null,
+      "tokens_per_event_mean": 5.0,
+      "tokens_per_event_p95": 5.0,
+      "probe_productcd_accuracy": 0.9044444444444445,
+      "probe_note": "char n-gram logistic probe; field set identical across modes"
+    }
+  ],
+  "field_set_identical": true,
+  "best_probe_mode": "narrative",
+  "assertions": {
+    "all_modes_use_same_11_fields": true,
+    "narrative_reversible": true
+  }
+}

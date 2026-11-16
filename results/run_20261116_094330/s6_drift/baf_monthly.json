@@ -1,0 +1,42 @@
+{
+  "stage": "s6_drift",
+  "unit": "baf_monthly",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:46:06Z",
+  "suite_version": "1.0.0",
+  "dataset": "baf",
+  "slices": [
+    {
+      "slice": 0,
+      "month": 6,
+      "ts_lo": 6.0,
+      "ts_hi": 6.0,
+      "n": 108168,
+      "fraud_rate": 0.013405073589231566,
+      "auc_pr": 0.12296477979744272,
+      "recall_at_fpr_1pct": 0.17862068965517242
+    },
+    {
+      "slice": 1,
+      "month": 7,
+      "ts_lo": 7.0,
+      "ts_hi": 7.0,
+      "n": 30000,
+      "fraud_rate": 0.0152,
+      "auc_pr": 0.14819273284887355,
+      "recall_at_fpr_1pct": 0.18421052631578946
+    }
+  ],
+  "slice_mode": "cross-split periods (validation month 6 -> test month 7)",
+  "n_unique_ts": 1,
+  "auc_pr_first_to_last_delta": 0.02522795305143083,
+  "fraud_rate_delta": 0.0017949264107684337,
+  "limitation": "BAF test split covers a single month; within-test temporal slicing is impossible and is NOT fabricated",
+  "note": "source-declared synthetic dataset with month-wise drift",
+  "assertions": {
+    "cross_split_drift_measured": true,
+    "both_auc_pr_finite": true
+  }
+}

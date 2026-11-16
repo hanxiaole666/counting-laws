@@ -1,0 +1,128 @@
+{
+  "stage": "s6_drift",
+  "unit": "error_stratification",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:46:09Z",
+  "suite_version": "1.0.0",
+  "n_test": 88581,
+  "by_amount_quintile": [
+    {
+      "stratum": "amount_Q1",
+      "n": 17716,
+      "fraud_rate": 0.04989839692932942,
+      "tp": 533,
+      "fp": 386,
+      "fn": 351,
+      "tn": 16446,
+      "precision": 0.5799782372143635,
+      "recall": 0.6029411764705882,
+      "auc_pr": 0.6110473624614475
+    },
+    {
+      "stratum": "amount_Q2",
+      "n": 17716,
+      "fraud_rate": 0.02596522917137051,
+      "tp": 173,
+      "fp": 119,
+      "fn": 287,
+      "tn": 17137,
+      "precision": 0.5924657534246576,
+      "recall": 0.3760869565217391,
+      "auc_pr": 0.4382073266539772
+    },
+    {
+      "stratum": "amount_Q3",
+      "n": 17716,
+      "fraud_rate": 0.030424475050801536,
+      "tp": 180,
+      "fp": 165,
+      "fn": 359,
+      "tn": 17012,
+      "precision": 0.5217391304347826,
+      "recall": 0.3339517625231911,
+      "auc_pr": 0.4053121520633674
+    },
+    {
+      "stratum": "amount_Q4",
+      "n": 17716,
+      "fraud_rate": 0.028110182885527208,
+      "tp": 169,
+      "fp": 135,
+      "fn": 329,
+      "tn": 17083,
+      "precision": 0.555921052631579,
+      "recall": 0.3393574297188755,
+      "auc_pr": 0.37254743324481926
+    },
+    {
+      "stratum": "amount_Q5",
+      "n": 17717,
+      "fraud_rate": 0.03962296099791161,
+      "tp": 194,
+      "fp": 284,
+      "fn": 508,
+      "tn": 16731,
+      "precision": 0.40585774058577406,
+      "recall": 0.27635327635327633,
+      "auc_pr": 0.3346594777132563
+    }
+  ],
+  "by_hour_block": [
+    {
+      "stratum": "hour_block_0",
+      "n": 18687,
+      "fraud_rate": 0.040937550168566386,
+      "tp": 398,
+      "fp": 316,
+      "fn": 367,
+      "tn": 17606,
+      "precision": 0.5574229691876751,
+      "recall": 0.5202614379084968,
+      "auc_pr": 0.5740016928324387
+    },
+    {
+      "stratum": "hour_block_1",
+      "n": 4555,
+      "fraud_rate": 0.047639956092206365,
+      "tp": 97,
+      "fp": 85,
+      "fn": 120,
+      "tn": 4253,
+      "precision": 0.532967032967033,
+      "recall": 0.4470046082949309,
+      "auc_pr": 0.4543563399852421
+    },
+    {
+      "stratum": "hour_block_2",
+      "n": 29325,
+      "fraud_rate": 0.028815004262574596,
+      "tp": 264,
+      "fp": 275,
+      "fn": 581,
+      "tn": 28205,
+      "precision": 0.4897959183673469,
+      "recall": 0.31242603550295855,
+      "auc_pr": 0.3582795259465537
+    },
+    {
+      "stratum": "hour_block_3",
+      "n": 36014,
+      "fraud_rate": 0.03487532626200922,
+      "tp": 490,
+      "fp": 413,
+      "fn": 766,
+      "tn": 34345,
+      "precision": 0.5426356589147286,
+      "recall": 0.39012738853503187,
+      "auc_pr": 0.4391938215156422
+    }
+  ],
+  "generative_hallucination_rate": null,
+  "note": "layered errors on a discriminative model; no generative LLM output exists here, so hallucination/parse rates are reported as N/A rather than 0",
+  "assertions": {
+    "amount_strata_complete": true,
+    "hour_strata_complete": true
+  }
+}

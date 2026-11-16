@@ -1,0 +1,105 @@
+{
+  "stage": "s8_llm",
+  "unit": "lora_sft_0_5b",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:50:13Z",
+  "suite_version": "1.0.0",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct + LoRA (r=8, q/k/v/o)",
+  "sft": {
+    "adapter_dir": "D:\\Financial Micro-Modelling Project\\edge-trusted-fintrisk-ae\\results\\run_20261116_094330\\s8_llm\\lora_adapter",
+    "train_seconds": 136.1,
+    "train_loss": 0.5137912886483329,
+    "trainable_params": 1081344,
+    "total_params": 495114112,
+    "trainable_fraction": 0.0021840298504761666,
+    "peak_vram_bytes": 1748951040
+  },
+  "target_protocol": "per-row CONTINUOUS probability predicted by the reference model on the training split (never a hard-coded 0.90/0.05)",
+  "n_train_rows": 900,
+  "target_stats": {
+    "mean": 0.0357765955955903,
+    "sd": 0.10677465633321495,
+    "min": 0.002490209373912654,
+    "max": 0.9599034423527762,
+    "n_distinct": 875
+  },
+  "elicitation": {
+    "choice": {
+      "llm": {
+        "auc_pr": 0.036380675491477506,
+        "auc_roc": 0.458247341738077,
+        "f1": 0.0,
+        "recall_at_fpr_1pct": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "gbdt_same_rows": {
+        "auc_pr": 0.5294756085858027,
+        "auc_roc": 0.9053008210327964,
+        "f1": 0.43564356435643564,
+        "recall_at_fpr_1pct": 0.3548387096774194,
+        "precision": 0.5641025641025641,
+        "recall": 0.3548387096774194
+      },
+      "delta_auc_pr_gbdt_minus_llm": 0.49309493309432517,
+      "permutation": {
+        "metric": "auc_pr",
+        "observed_delta": 0.49309493309432517,
+        "p_two_sided": 0.0,
+        "n_perm": 1000,
+        "null_q": {
+          "q025": -0.14308626153941914,
+          "q500": 0.0008286737410793527,
+          "q975": 0.149518817776091
+        },
+        "note": "row-wise exchangeability under H0; no distributional assumption on the metric"
+      },
+      "bootstrap": {
+        "B": 400,
+        "resample_unit": "row",
+        "delta_auc_pr_mean": 0.4876539473660917,
+        "delta_auc_pr_ci95": [
+          0.34779717731661947,
+          0.6071605615974812
+        ],
+        "delta_recall_at_1pct_fpr_ci95": [
+          0.22659701492537312,
+          0.4817171717171715
+        ],
+        "a_auc_pr_ci95": [
+          0.3880621421351749,
+          0.6475289377165613
+        ],
+        "b_auc_pr_ci95": [
+          0.028326782139840384,
+          0.049166068389866126
+        ],
+        "p_delta_positive": 1.0
+      },
+      "n_rows": 1500,
+      "n_positives": 62
+    },
+    "choice_latency": {
+      "p50_ms_per_row": 7.79,
+      "p95_ms_per_row": 7.9,
+      "throughput_rows_per_s": 127.45
+    }
+  },
+  "json_interface": {
+    "parse_failures": 0,
+    "parse_failure_rate": 0.0,
+    "latency": {
+      "p50_ms_per_row": 155.84,
+      "p95_ms_per_row": 162.99,
+      "throughput_rows_per_s": 6.39
+    }
+  },
+  "delta_auc_pr_vs_base": -0.04032725112528673,
+  "assertions": {
+    "targets_are_continuous": true,
+    "targets_not_constant": true,
+    "adapter_saved": true
+  }
+}

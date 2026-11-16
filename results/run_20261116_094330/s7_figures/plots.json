@@ -1,0 +1,36 @@
+{
+  "stage": "s7_figures",
+  "unit": "plots",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:50:45Z",
+  "suite_version": "1.0.0",
+  "figures": [
+    "figures/fig1_complexity.png",
+    "figures/fig2_challenge.png",
+    "figures/fig3_learning_curve.png",
+    "figures/fig4_seed_sweep.png",
+    "figures/fig5_field_ladder.png",
+    "figures/fig6_drift.png",
+    "figures/fig7_representation.png",
+    "figures/fig8_attention_modes.png",
+    "figures/fig9_pswa_scan.png",
+    "figures/fig10_gpu_vram.png",
+    "figures/fig11_block_alignment.png",
+    "figures/fig12_llm_vs_gbdt.png",
+    "figures/fig13_onchain_gas.png",
+    "figures/fig14_cost_curve.png"
+  ],
+  "n_inputs": 27,
+  "tables_written": [
+    "paper/TABLES.md",
+    "paper/FIGURE_LEGEND.md"
+  ],
+  "artifact_chain": "results/<run_id>/s7_figures/ARTIFACT_CHAIN.json",
+  "assertions": {
+    "no_example_data": true,
+    "all_inputs_real": true,
+    "chain_complete": true
+  }
+}

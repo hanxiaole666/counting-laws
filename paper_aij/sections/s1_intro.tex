@@ -1,0 +1,159 @@
+\section{Introduction}\label{sec:intro}
+
+\subsection{A default that is rarely counted}
+
+Two substitutions are treated as safe engineering defaults in deployed learning
+systems. The first is structural: when a sequence is long, replace dense
+attention by a sparse pattern whose number of attended entries grows more slowly
+than $n^2$, and assume that the saving follows. The family is well catalogued
+\cite{beltagy2020longformer,zaheer2020bigbird,zhou2021informer,tay2022efficient}:
+a sliding window, a handful of global tokens, a block selection, or some
+combination of the three. It is standard to call the result ``linear'' or
+``sub-quadratic''. The second substitution is representational: when labels are
+scarce, replace a task-specific model by a pretrained language model queried
+zero-shot or adapted on a few hundred examples, and assume that scale substitutes
+for supervision \cite{hegselmann2023tabllm}. Both are attractive for the same
+reason. Each replaces an expensive quantity by a cheap one: quadratic work by a
+sparsity pattern, labelled data by a prompt.
+
+This paper is about the accounting that both substitutions skip. For attention,
+what decides whether a pattern saves anything is the number of attended entries
+as a function of $n$, not a qualitative label such as ``sparse'', and once that
+number is written down the verdict often reverses. For a language model on a
+tabular decision task, what decides whether adaptation helps is the number of
+labelled rows; separating that from the interface costs an experiment in which
+the interface is repaired while supervision is held fixed. We carry out both
+accounts on a single commodity device of the kind these systems are actually
+deployed on, rather than on a datacentre accelerator.
+
+\subsection{What we establish}
+
+\paragraph{C1 (entry law, exact)} For the mask that combines a causal sliding
+window of width $w$, $s$ attention sinks and a periodic anchor set of period
+$g$, the number of attended entries is
+\begin{equation}
+\lvert \Sset \rvert \;=\; \sum_{i<n}\Big( \min(i{+}1,w) + \min(i{+}1,s)
++ \Big\lfloor \tfrac{i-w}{g} \Big\rfloor_{+} \Big),
+\label{eq:count}
+\end{equation}
+which equals $n(w+s) + (n-w)^2/(2g) + \bigO(n)$ and is verified entry-exact on
+the whole grid we measure (Table~\ref{tab:counting}, Figure~\ref{fig:counting}).
+Equation~\eqref{eq:count} is not a bound but an identity, so it can be wrong,
+and we test it.
+
+\paragraph{C2 (linearity criterion)} Cost is linear in $n$ if and only if the
+\emph{global-key budget}, the number of keys visible to every query, is bounded
+as $n$ grows (Theorem~\ref{thm:linear}). A fixed period $g$ gives $n/g$ global
+keys, so periodic anchoring is quadratic; a fixed set of global tokens gives
+$\bigO(1)$ and is linear. The two designs are usually discussed under one
+heading. The count separates them, and it is the budget that has to be capped,
+not the sparsity.
+
+\paragraph{C3 (granularity law, measured)} Kernels do not execute masks. They
+execute blocks. A block-granular kernel materialises a fraction $\min(1, B/g)$ of
+the causal key blocks plus a window term, independent of whether the anchor
+period is a multiple of the block size, and the decomposition reproduces the
+measured density to three decimals at six settings (Table~\ref{tab:block},
+Figure~\ref{fig:density}). The consequence is quantitative. Holding the mask
+fixed at $g=192$ and coarsening the kernel from $B=32$ to $B=256$ raises the
+ratio of executed to advertised density from \BlockInflationGranMin{} to
+\BlockInflationGranMax{}$\times$ (Table~\ref{tab:granularity}), and at $B=256$
+the kernel materialises every causal block: a pattern advertised as
+\BlockElemDensPct\% sparse is executed as dense attention.
+
+\paragraph{C4 (on-device verdict)} On a \GpuMemGiB\,GiB device we measure peak
+transient memory and latency for five implementations of the family across
+$n\in[256, \LargestN]$. At $n=\LargestN$ the anchor-based variant requires
+\VramPswaBig\,MiB against \VramSdpaBig\,MiB for the fused dense kernel
+($\VramTimesSdpa\times$) and is \LatencySlowdownVsSdpa$\times$ slower. The same
+pattern with the anchors removed is linear in memory and
+\LatSlidingRatio$\times$ \emph{faster} than fused dense attention. The cost is
+therefore attributable to the anchor set, which is what
+Proposition~\ref{prop:count} and Theorem~\ref{thm:linear} predict. We also say
+where our implementation is not optimal and how much of the gap is a
+kernel-engineering artefact (Section~\ref{sec:attn_disclose}).
+
+\paragraph{C5 (supervision bound)} On identical held-out rows, a $0.5$B
+instruction-tuned model reaches AUC-PR \LlmAucPr{} against \GbdtSameAucPr{} for
+gradient-boosted trees, a paired gap of \LlmDelta{} (row-level bootstrap
+\LlmCiLo--\LlmCiHi; the paired permutation test with \PermSamples{} resamples gives
+$p<10^{-3}$). Low-rank adaptation \cite{hu2022lora} on
+\SftRows{} rows with per-row continuous targets reduces the JSON parse-failure
+rate from \ParseFailZero\% to \SftParseFail\% while AUC-ROC falls from
+\LlmAucRoc{} to \SftAucRoc{} and $F_1$ to \SftFOne. Format and discrimination are
+therefore separable, and repairing the first does not repair the second. At this
+scale what binds is the number of supervision rows. Reading the answer through a
+logit interface rather than through generated JSON saves a further factor of
+\InterfaceRatio{} in latency, which separates interface cost from model cost.
+
+\paragraph{C6 (protocol)} Each of C1--C5 is a claim that our own apparatus can
+refute, and in three cases it did; Section~\ref{sec:audit} describes the
+separation between \emph{assertions} (must be true, else the artefact is
+inconsistent) and \emph{hypotheses} (may be false, meaning the scientific claim
+is refuted), the prohibition on imputing missing measurements, and the
+dependency fingerprint that forces a figure to be regenerated when an upstream
+result changes. Sections~\ref{sec:attn_withdraw} and~\ref{sec:lang} report the
+refuted claims in full.
+
+\subsection{Why this is a contribution to artificial intelligence}
+
+The relevance does not come from tuning one fraud pipeline. It comes from the
+fact that three quantities predict whether two of the most widely deployed
+substitutions in applied AI will help or hurt: the global-key budget of an
+attention pattern, the block inflation factor of the kernel that executes it, and
+the number of labelled rows per decision class. Each is an integer or a ratio
+available before training starts, and each is falsifiable by an experiment that
+fits on one GPU. We make the predictions, we test them, and
+in two cases we find the opposite of what the current literature's vocabulary
+suggests. Since the same vocabulary (``sparse is cheaper'', ``pretrained models
+generalise'') is what practitioners use to choose an architecture under a memory
+or label budget, a correction to the vocabulary is worth more than another point
+of AUC-PR on one benchmark.
+
+The work touches three parts of AI research, though not evenly. Attention has
+recently been analysed as an object with a capacity and a structure of its own
+\cite{baldi2023quarks}; what we add is the complementary accounting of what a
+mask costs to execute, as opposed to what it can represent. The empirical
+literature on when learned models beat strong tabular baselines
+\cite{gorishniy2021revisiting,grinsztajn2022why} supplies the second comparison,
+which we extend to pretrained language models under an explicit cost and
+supervision budget and split into the two failure modes that are usually
+conflated. Cost-sensitive decision making \cite{elkan2001foundations} supplies
+the criterion, kept unchanged throughout, which is what makes the efficiency
+question a decision question rather than a benchmark question, and why our
+thresholds are set on validation data and evaluated once.
+
+We also take a position on method. A negative result about a widely used default
+is only useful if the community can check it, so the paper is written against an
+artefact in which every number is regenerated from a stored result file at build
+time, every claim carries a status, and blocked measurements are listed with the
+command that would unblock them rather than replaced by an estimate.
+Section~\ref{sec:protocol} describes the apparatus and \ref{app:artifact} gives
+the reproduction commands. That the apparatus refuted three of our own
+intermediate claims is, to us, evidence that it works.
+
+\subsection{Scope and what we do not claim}
+
+We do not claim that sparse attention is useless, nor that language models
+cannot make tabular decisions. We claim that one specific and popular mask
+family, with a fixed anchor period executed at block granularity on a
+memory-constrained device, is dominated by a fused dense kernel at every length
+that device can hold; and that a $0.5$B model adapted on $10^2$ rows is
+supervision-limited rather than interface-limited. Where the evidence stops we
+say so: we measure two model sizes, not a scale law; we measure one GPU, one
+EVM and two datasets; the attestation and proof-carrying-inference paths that
+motivated the original system are not measured at all and are reported as
+blocked (Section~\ref{sec:system}), not as estimated.
+
+\subsection{Organisation}
+
+Section~\ref{sec:setting} fixes notation and the decision problem.
+Section~\ref{sec:related} relates the work to efficient attention, cost-sensitive
+learning and tabular language modelling, and states the closest prior work and
+the difference. Section~\ref{sec:theory} proves the two laws and derives the
+hypotheses tested later. Section~\ref{sec:protocol} describes the measurement
+protocol. Sections~\ref{sec:attention}, \ref{sec:lang} and \ref{sec:system}
+report the attention, language-model and end-to-end results.
+Section~\ref{sec:discussion} discusses implications, threats to validity and the
+limits of the evidence. \ref{app:proofs} contains the proofs and
+\ref{app:artifact} the reproduction recipe.

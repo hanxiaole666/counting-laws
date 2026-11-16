@@ -1,0 +1,41 @@
+# requirements-gpu.lock — extras needed by the units that the CPU-only
+# requirements.lock cannot run:
+#   s1_pswa/gpu_memory_latency, s1_pswa/block_alignment  -> torch (+CUDA)
+#   s8_llm/*                                             -> transformers, peft
+#   s5_baselines/llm_scale_scan                          -> transformers
+#   s3_protocol/onchain_gas                              -> py-evm, py-solc-x
+#
+# Measured on the reference host (Windows, RTX 2060 6 GiB, CUDA 11.8 runtime):
+#   C:\Users\apple\anaconda3\python.exe  (Python 3.11.9)
+#
+# Install on top of requirements.lock:
+#   pip install -r requirements.lock -r requirements-gpu.lock
+#
+# NOTE ON TORCH: any torch 2.2.x + cu118 wheel works; the +cu118 local version
+# tag is not pinned here because the wheel index differs per platform. Verify
+# with `python -c "import torch; print(torch.version.cuda, torch.cuda.is_available())"`.
+# If your driver is newer you may substitute a cu121 wheel of the same 2.2.1.
+
+# --- tensors / GPU measurement -------------------------------------------
+torch==2.2.1
+numpy==1.26.4
+
+# --- local generative baseline (s8_llm) ----------------------------------
+# transformers is pinned to 4.44.2: 4.32.x lacks the `Cache` symbol that
+# peft>=0.11 imports, and 4.45+ changes the Qwen2 attention cache contract.
+transformers==4.44.2
+tokenizers==0.19.1
+peft==0.12.0
+datasets==2.12.0
+accelerate==0.34.2
+safetensors==0.4.5
+huggingface-hub==0.24.7
+
+# --- on-chain gas measurement (s3_protocol/onchain_gas) ------------------
+py-evm==0.12.1b1
+eth-utils==6.0.0
+eth-abi==6.0.0
+eth-keys==0.7.0
+eth-typing==5.2.1
+eth-hash==0.7.1
+py-solc-x==2.1.0

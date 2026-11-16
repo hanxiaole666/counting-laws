@@ -1,0 +1,54 @@
+{
+  "stage": "s5_baselines",
+  "unit": "llm_scale_scan",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:50:38Z",
+  "suite_version": "1.0.0",
+  "rows": [
+    {
+      "model": "qwen2.5-0.5b-instruct",
+      "status": "ok",
+      "params": 494032768,
+      "weights_dtype": "float16",
+      "load_peak_gib": 1.116,
+      "generation_peak_gib": 1.223,
+      "auc_pr": 0.06491730720251465,
+      "auc_roc": 0.7287357481586116,
+      "latency": {
+        "p50_ms_per_row": 6.73,
+        "p95_ms_per_row": 7.39,
+        "throughput_rows_per_s": 147.37
+      },
+      "n_rows": 600
+    },
+    {
+      "model": "qwen2.5-1.5b-instruct",
+      "status": "ok",
+      "params": 1543714304,
+      "weights_dtype": "float16",
+      "load_peak_gib": 3.314,
+      "generation_peak_gib": 3.502,
+      "auc_pr": 0.021062714571025272,
+      "auc_roc": 0.32968418928463317,
+      "latency": {
+        "p50_ms_per_row": 20.14,
+        "p95_ms_per_row": 20.55,
+        "throughput_rows_per_s": 49.29
+      },
+      "n_rows": 600
+    }
+  ],
+  "fit": {
+    "slope_gib_per_billion_params": 2.1711346935609996,
+    "intercept_gib": 0.1503883176392274,
+    "n_points": 2,
+    "note": "two-point linear fit; an extrapolation to 7B/8B is a MODEL, not a measurement, and is reported as such"
+  },
+  "device_total_gib": 6.0,
+  "assertions": {
+    "two_models_measured": true,
+    "vram_grows_with_params": true
+  }
+}

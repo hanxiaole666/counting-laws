@@ -1,0 +1,40 @@
+{
+  "stage": "s4_stats",
+  "unit": "effect_sizes",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:52Z",
+  "suite_version": "1.0.0",
+  "cohens_d_positive_class_scores_gbdt_vs_linear": 0.7917406870388327,
+  "cliffs_delta_positive_class_scores": 0.2536641270661157,
+  "seed_auc_pr_mean": 0.45784362146590346,
+  "seed_auc_pr_sd": 0.013704683816585938,
+  "power_curve": [
+    {
+      "effect_in_sd": 0.25,
+      "required_seeds": 126
+    },
+    {
+      "effect_in_sd": 0.5,
+      "required_seeds": 32
+    },
+    {
+      "effect_in_sd": 1.0,
+      "required_seeds": 8
+    },
+    {
+      "effect_in_sd": 1.5,
+      "required_seeds": 4
+    },
+    {
+      "effect_in_sd": 2.0,
+      "required_seeds": 2
+    }
+  ],
+  "ablation_by_seed_interaction": "NOT MEASURED (no multi-variant x seed grid on this CPU budget)",
+  "assertions": {
+    "effect_sizes_finite": true,
+    "power_curve_complete": true
+  }
+}

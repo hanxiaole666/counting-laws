@@ -1,0 +1,21 @@
+{
+  "stage": "s3_protocol",
+  "unit": "replay_determinism",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:22Z",
+  "suite_version": "1.0.0",
+  "result": {
+    "trials": 300,
+    "quantised_replay_exact_matches": 300,
+    "quantised_replay_exact_rate": 1.0,
+    "float_perturbation_eps": 1e-06,
+    "float_replay_mismatch": 0,
+    "float_replay_mismatch_rate": 0.0,
+    "semantics": "int16-like fixed-point, scale=10000"
+  },
+  "assertions": {
+    "quantised_replay_bit_exact": true
+  }
+}

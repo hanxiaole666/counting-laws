@@ -1,0 +1,155 @@
+{
+  "run_id": "run_20261116_094330",
+  "generated_at": "2026-11-16T01:50:44Z",
+  "generator": "experiments/make_figures.py",
+  "generator_sha256": "05d4e71f313b73846c02fbad1d64afe0dd5547791135771eb4164489b5f61331",
+  "policy": "fail-fast; no EXAMPLE DATA; mock inputs rejected",
+  "inputs": {
+    "s1_pswa/complexity_curve.json": "a2dd9f2b1504b25f1929a9b0be0ce5f942d3fae6e0238d3b33ebd3cf70ff91e3",
+    "s1_pswa/quality_bound.json": "4f3540b20a0cd17ddd624b44c26a911607bd92de55c9b897e1b0aefa71b04c57",
+    "s1_pswa/mode_comparison.json": "e6ec4c2e3bf631abbca57543f2ad008ea8763699783400e4b8550d7c8e081556",
+    "s1_pswa/long_sequence_scan.json": "6557855f08cce741e18b4f0b0ec33aea865c0fc774e56d9ed092cf0ee996e500",
+    "s2_gbl/fidelity_ablation.json": "412e2a7617b8f219bc149996807d8452059a42b2b45e5bdf452ae05cbcf18238",
+    "s3_protocol/challenge_grid.json": "f9e29b2d78fbc92ee667bc98c8cefd5afa36d8691e467f279ce44670cfcbb462",
+    "s3_protocol/predictable_attack.json": "eaea20dfab12e5be117bd548f9c9cd76e25e887143662240d91cd2b420b2ec54",
+    "s4_stats/seed_sweep.json": "08524074b866f808fc2d1a2d2a0fcd3b3152cf24d7942c745d60693dc7e0417b",
+    "s4_stats/inference.json": "bf53df03a1b0974ab06809cd95efc5a0c612e3b5bb690027380104e50cfebb62",
+    "s4_stats/calibration.json": "d5e135e0edc921f1e6e3f6b730cacf9db1584c4c54d7ce71300c7ad299880f9e",
+    "s4_stats/effect_sizes.json": "0289e8c71d08ac2e52e85e371fb9e68c46e05cc53ddb5e164618997c973ea4e5",
+    "s5_baselines/main_table.json": "2fd3d5f84696118525c9b052d1c8a3aefdc22ab1cdbb1bc321260a3e3930495c",
+    "s5_baselines/learning_curve.json": "2c00d9362f42b8b20eb80b6d0e28f26621242b123ea98a31f0e413afc8423b5a",
+    "s5_baselines/field_ladder.json": "514b2aaba5a2921c618146198d75c87cd41c9098dd8d433b8ba448d477e0423f",
+    "s5_baselines/baf_transfer.json": "4093a661f5533c93789f34ae75a0c0c97db9008b71f7c1bdc3928aa78bc4fbe0",
+    "s6_drift/ieee_temporal.json": "2415088728e15b6c764f5d5ab40f3b9a42b088b904cccf38d2da6b3fc49c5200",
+    "s6_drift/baf_monthly.json": "657501ce30b65fc9ac79919829fb7c9b80e3fc4e8e146f8af27b10cb8782ca12",
+    "s6_drift/fairness.json": "1c0e60e322671cb39e0f8cf8d5755fe19937eb72ca7bbac87f6ee311739264b7",
+    "s6_drift/error_stratification.json": "c2ede78f80e536d298c9519ca19e2fa999eb410ab800baa3ed7cb970ea80c29e",
+    "s1_pswa/gpu_memory_latency.json": "6dbf9396cc029aa7632f6a18626c7d311341c22ef6f97bfb58352ddecda50ca8",
+    "s1_pswa/block_alignment.json": "134cb42aceb886f5e8b421915019f48759d0a5e1c0bb4c0e49f695667e5ec830",
+    "s8_llm/zero_shot_0_5b.json": "2d2941e43c0879e541329a8dfd2cc91f685561641a58a03da53c8ecd925e3ab4",
+    "s8_llm/lora_sft_0_5b.json": "74f19a8a63cebb53ed3c391f1a5cada2fddf38eeb8f608e1a3e21cc21fac372b",
+    "s5_baselines/llm_scale_scan.json": "f1759553ae6391ec5e33eb0e8db8d2ec001009b19972bd12abfe2e0d143bba85",
+    "s3_protocol/onchain_gas.json": "d4e9d493449ac473b049f5a004e22b6ac8886cf091e634af6f5ffa7458a5c384",
+    "s4_stats/permutation_inference.json": "29b95a4b0b722ecc8a6822a6b077cc63409374c778966e7c520bd3a21df451a4",
+    "s4_stats/cost_sensitivity.json": "355d58273a2648cc8ff75219f15ae0425ead51b0771db105fb003596f7822dad"
+  },
+  "figures": [
+    {
+      "figure": "figures/fig1_complexity.png",
+      "title": "Attention score entries vs sequence length",
+      "sha256": "8378b27af94ab680602e7d1097547b26b2506267e8301be7aaddad337f898168",
+      "input_files": [
+        "s1_pswa/complexity_curve.json"
+      ]
+    },
+    {
+      "figure": "figures/fig2_challenge.png",
+      "title": "Challenge detection vs sampling rate",
+      "sha256": "4c58b3fb25fd858b13ea33e905c441d6194ee563d7a1e5b9c7ce902be33dde8e",
+      "input_files": [
+        "s3_protocol/challenge_grid.json",
+        "s3_protocol/predictable_attack.json"
+      ]
+    },
+    {
+      "figure": "figures/fig3_learning_curve.png",
+      "title": "AUC-PR vs labelled training rows",
+      "sha256": "7010a89f6d7ee3c69f1fb37839b44bbf5b102f5b886b397c90d18786154613fb",
+      "input_files": [
+        "s5_baselines/learning_curve.json"
+      ]
+    },
+    {
+      "figure": "figures/fig4_seed_sweep.png",
+      "title": "AUC-PR across training seeds",
+      "sha256": "0d36a15c101e209aacce32f7082bb35765367f52968e2b31eb0d315cb28c1384",
+      "input_files": [
+        "s4_stats/seed_sweep.json"
+      ]
+    },
+    {
+      "figure": "figures/fig5_field_ladder.png",
+      "title": "AUC-PR vs number of input fields",
+      "sha256": "a9f59c467df5e8b2f1644c5603fd010886b8840b95cba01398750c7a747847ad",
+      "input_files": [
+        "s5_baselines/field_ladder.json"
+      ]
+    },
+    {
+      "figure": "figures/fig6_drift.png",
+      "title": "Temporal drift on two datasets",
+      "sha256": "dd7678ac543ac1f206e09e3d47e63d85636b82b1cf5e514fef61c8d18031dd27",
+      "input_files": [
+        "s6_drift/ieee_temporal.json",
+        "s6_drift/baf_monthly.json"
+      ]
+    },
+    {
+      "figure": "figures/fig7_representation.png",
+      "title": "Field-aligned surface forms",
+      "sha256": "0264729f4331ba901012de54e7f97d1f2dcec40317d506fa055bf8e166b29e54",
+      "input_files": [
+        "s2_gbl/fidelity_ablation.json"
+      ]
+    },
+    {
+      "figure": "figures/fig8_attention_modes.png",
+      "title": "Sparse attention modes",
+      "sha256": "2b5a0e8ea3ebe269c85064578412e38bc575794c6137f0cc497ce98967906d08",
+      "input_files": [
+        "s1_pswa/mode_comparison.json",
+        "s1_pswa/quality_bound.json"
+      ]
+    },
+    {
+      "figure": "figures/fig9_pswa_scan.png",
+      "title": "PSWA memory gain vs retained attention mass",
+      "sha256": "2195c36f6aa12fe5e439b3359f607fb49cce6e74b78c5511ffc7635cb425a046",
+      "input_files": [
+        "s1_pswa/long_sequence_scan.json"
+      ]
+    },
+    {
+      "figure": "figures/fig10_gpu_vram.png",
+      "title": "MEASURED peak VRAM on the RTX 2060 (torch)",
+      "sha256": "fc85a4dc16198c57d3a3d921407b4879c209913178e8ced0c492ac98a56d0d79",
+      "input_files": [
+        "s1_pswa/gpu_memory_latency.json"
+      ]
+    },
+    {
+      "figure": "figures/fig11_block_alignment.png",
+      "title": "Block density vs anchor period",
+      "sha256": "8394258592206951d978fc6bf39308b28c32b31dec3fc608702a264c92ee9c0d",
+      "input_files": [
+        "s1_pswa/block_alignment.json"
+      ]
+    },
+    {
+      "figure": "figures/fig12_llm_vs_gbdt.png",
+      "title": "Local LLM vs tabular baseline",
+      "sha256": "1d5394dbfb0a0ad18a241118dc210b7cdb777051e2c34485f705d54e53a8f7f7",
+      "input_files": [
+        "s8_llm/zero_shot_0_5b.json",
+        "s8_llm/lora_sft_0_5b.json",
+        "s5_baselines/main_table.json"
+      ]
+    },
+    {
+      "figure": "figures/fig13_onchain_gas.png",
+      "title": "EVM gas: per-tx log vs one Merkle root",
+      "sha256": "048a4dd9632391a137df05f25bc5cc310762a3544212207511a77af85c98204a",
+      "input_files": [
+        "s3_protocol/onchain_gas.json"
+      ]
+    },
+    {
+      "figure": "figures/fig14_cost_curve.png",
+      "title": "Expected cost vs cost ratio",
+      "sha256": "42ddd633f5f421e997343b96d6d3001500874b7aebe7865874b3aed273f00745",
+      "input_files": [
+        "s4_stats/cost_sensitivity.json"
+      ]
+    }
+  ]
+}

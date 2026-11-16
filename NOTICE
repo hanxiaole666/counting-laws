@@ -1,0 +1,49 @@
+VERI-FinRisk — third-party data notice
+
+1. IEEE-CIS Fraud Detection (Kaggle / Vesta)
+   - Obtained in this work via the third-party mirror
+     `mkbadeniyi/fraud-detection-benchmark` (hf-mirror.com), file
+     `fraud_datasets/ieee_cis_card_payments_real.parquet`.
+   - sha256: 62a14b59a946eb6e0c0d45ac56ed6eeb7dc014babeb04803653191bcb3ddd30d
+     (matches the value published on that dataset card).
+   - The original IEEE-CIS competition data is subject to the Kaggle
+     competition rules and is NOT redistributed here. Users must obtain it
+     themselves and comply with those rules.
+   - The mirror adds a unified schema (`dataset`, `split`, `ts`, `label`,
+     `user_id`, `seen_user`) and a strict temporal 70/15/15 split.
+
+2. Bank Account Fraud (BAF) Suite, NeurIPS 2022 Datasets & Benchmarks
+   - Mirror file: `fraud_datasets/baf_bank_account_opening_synthetic.parquet`.
+   - sha256: c740abdc176b28ce94db6c5892725087a62ae909dee74a8e9687742a2262bff7
+   - License: CC BY-NC-SA 4.0 (attribution, non-commercial, share-alike).
+     Any derived dataset must carry the same license. NOT redistributed here.
+   - The source declares these records SYNTHETIC; they are used only for
+     external-validity / drift / fairness analysis, never as a "real-world
+     production" claim.
+
+3. Model weights (local generative baseline, Section 5.10)
+   - No pretrained weights are bundled in this repository or redistributed.
+   - The LLM units download, at run time and only if absent, two public
+     checkpoints of the Qwen2.5-Instruct family into `.hf_cache/models/`:
+       * Qwen/Qwen2.5-0.5B-Instruct  (24 layers, hidden 896, 2 KV heads)
+       * Qwen/Qwen2.5-1.5B-Instruct  (28 layers, hidden 1536, 2 KV heads)
+     Both are licensed Apache-2.0 by the Alibaba Qwen team; the licence and the
+     `LICENSE` file shipped inside each snapshot are retained verbatim.
+   - Download path: `hf-mirror.com` primary, `huggingface.co` fallback, with
+     `HF_HUB_DISABLE_SYMLINKS=1` (Windows lacks the symlink privilege). Runs
+     after the first successful download are fully offline
+     (`HF_HUB_OFFLINE=1`).
+   - These models are used ONLY as a *local, small-scale* generative elicitation
+     baseline compared against our gradient-boosted ensemble on the SAME rows.
+     They are not presented as a frontier-LLM evaluation; the 7B-8B scale
+     comparison remains BLOCKED (see paper/BLOCKED.md, gap B2 in
+     paper/GAP_TO_ACCEPTANCE.md).
+   - LoRA adapters produced by `s8_llm/lora_sft_0_5b` are derived weights of an
+     Apache-2.0 model and are therefore Apache-2.0 as well.
+
+4. Code
+   - MIT (see LICENSE). Dataset terms above are independent of the code license.
+
+5. Citation verification
+   - References mentioned in paper/MANUSCRIPT.md are UNVERIFIED web-search
+     results. Do not copy them into a .bib file before DBLP/CrossRef checks.

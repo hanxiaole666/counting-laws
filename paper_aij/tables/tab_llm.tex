@@ -1,0 +1,10 @@
+\begin{tabular}{lrrrrrr}
+\toprule
+system & AUC-PR & AUC-ROC & R@FPR$=1\%$ & F1 & parse fail & ms/row \\
+\midrule
+GBDT, same rows & 0.5295 & 0.9053 & 35.5\% & 0.4356 & -- & -- \\
+0.5B, logit interface & 0.0767 & 0.6412 & 4.8\% & 0.0750 & 100.0\% & 6.3 \\
+0.5B, JSON interface & -- & -- & -- & -- & 100.0\% & 139.5 \\
+0.5B + LoRA (900 rows) & 0.0364 & 0.4582 & 0.0\% & 0.0000 & 0.0\% & 7.8 \\
+\bottomrule
+\end{tabular}

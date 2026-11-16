@@ -1,0 +1,1155 @@
+{
+  "stage": "s1_pswa",
+  "unit": "gpu_memory_latency",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:16Z",
+  "suite_version": "1.0.0",
+  "bench": {
+    "rows": [
+      {
+        "n": 256,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "ok",
+            "transient_bytes": 329728,
+            "transient_mib": 0.314,
+            "peak_total_bytes": 8947712,
+            "baseline_bytes": 8617984,
+            "p50_ms": 0.265,
+            "p95_ms": 0.271,
+            "mean_ms": 0.266,
+            "reps": 12,
+            "block_nnz": 10,
+            "block_density": 0.625
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 32768,
+            "transient_mib": 0.031,
+            "peak_total_bytes": 8650752,
+            "baseline_bytes": 8617984,
+            "p50_ms": 0.077,
+            "p95_ms": 0.082,
+            "mean_ms": 0.078,
+            "reps": 12,
+            "block_nnz": 10,
+            "block_density": 0.625
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 436224,
+            "transient_mib": 0.416,
+            "peak_total_bytes": 9054208,
+            "baseline_bytes": 8617984,
+            "p50_ms": 1.391,
+            "p95_ms": 2.371,
+            "mean_ms": 1.481,
+            "reps": 12,
+            "block_nnz": 7,
+            "block_density": 0.4375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 604160,
+            "transient_mib": 0.576,
+            "peak_total_bytes": 9222144,
+            "baseline_bytes": 8617984,
+            "p50_ms": 1.352,
+            "p95_ms": 1.407,
+            "mean_ms": 1.32,
+            "reps": 12,
+            "block_nnz": 9,
+            "block_density": 0.5625
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 604160,
+            "transient_mib": 0.576,
+            "peak_total_bytes": 9222144,
+            "baseline_bytes": 8617984,
+            "p50_ms": 1.142,
+            "p95_ms": 1.65,
+            "mean_ms": 1.246,
+            "reps": 12,
+            "block_nnz": 9,
+            "block_density": 0.5625
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 604160,
+            "transient_mib": 0.576,
+            "peak_total_bytes": 9222144,
+            "baseline_bytes": 8617984,
+            "p50_ms": 1.078,
+            "p95_ms": 1.536,
+            "mean_ms": 1.174,
+            "reps": 12,
+            "block_nnz": 9,
+            "block_density": 0.5625
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 169472,
+            "transient_mib": 0.162,
+            "peak_total_bytes": 8787456,
+            "baseline_bytes": 8617984,
+            "p50_ms": 2.06,
+            "p95_ms": 2.181,
+            "mean_ms": 2.07,
+            "reps": 12,
+            "block_nnz": 9,
+            "block_density": 0.5625
+          }
+        },
+        "fixed_bytes": 8617984
+      },
+      {
+        "n": 512,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "ok",
+            "transient_bytes": 1314816,
+            "transient_mib": 1.254,
+            "peak_total_bytes": 10031104,
+            "baseline_bytes": 8716288,
+            "p50_ms": 0.327,
+            "p95_ms": 0.448,
+            "mean_ms": 0.332,
+            "reps": 12,
+            "block_nnz": 36,
+            "block_density": 0.5625
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 65536,
+            "transient_mib": 0.062,
+            "peak_total_bytes": 8781824,
+            "baseline_bytes": 8716288,
+            "p50_ms": 0.106,
+            "p95_ms": 0.109,
+            "mean_ms": 0.106,
+            "reps": 12,
+            "block_nnz": 36,
+            "block_density": 0.5625
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 872448,
+            "transient_mib": 0.832,
+            "peak_total_bytes": 9588736,
+            "baseline_bytes": 8716288,
+            "p50_ms": 0.903,
+            "p95_ms": 0.99,
+            "mean_ms": 0.913,
+            "reps": 12,
+            "block_nnz": 15,
+            "block_density": 0.234375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 1208320,
+            "transient_mib": 1.152,
+            "peak_total_bytes": 9924608,
+            "baseline_bytes": 8716288,
+            "p50_ms": 1.096,
+            "p95_ms": 1.178,
+            "mean_ms": 1.104,
+            "reps": 12,
+            "block_nnz": 21,
+            "block_density": 0.328125
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 1544192,
+            "transient_mib": 1.473,
+            "peak_total_bytes": 10260480,
+            "baseline_bytes": 8716288,
+            "p50_ms": 1.121,
+            "p95_ms": 1.542,
+            "mean_ms": 1.203,
+            "reps": 12,
+            "block_nnz": 23,
+            "block_density": 0.359375
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 1544192,
+            "transient_mib": 1.473,
+            "peak_total_bytes": 10260480,
+            "baseline_bytes": 8716288,
+            "p50_ms": 1.153,
+            "p95_ms": 1.554,
+            "mean_ms": 1.23,
+            "reps": 12,
+            "block_nnz": 23,
+            "block_density": 0.359375
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 247808,
+            "transient_mib": 0.236,
+            "peak_total_bytes": 8964096,
+            "baseline_bytes": 8716288,
+            "p50_ms": 4.659,
+            "p95_ms": 6.446,
+            "mean_ms": 5.037,
+            "reps": 12,
+            "block_nnz": 23,
+            "block_density": 0.359375
+          }
+        },
+        "fixed_bytes": 8716288
+      },
+      {
+        "n": 1024,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "ok",
+            "transient_bytes": 5251072,
+            "transient_mib": 5.008,
+            "peak_total_bytes": 14163968,
+            "baseline_bytes": 8912896,
+            "p50_ms": 0.403,
+            "p95_ms": 0.485,
+            "mean_ms": 0.396,
+            "reps": 12,
+            "block_nnz": 136,
+            "block_density": 0.53125
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 131072,
+            "transient_mib": 0.125,
+            "peak_total_bytes": 9043968,
+            "baseline_bytes": 8912896,
+            "p50_ms": 0.166,
+            "p95_ms": 0.171,
+            "mean_ms": 0.166,
+            "reps": 12,
+            "block_nnz": 136,
+            "block_density": 0.53125
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 1744896,
+            "transient_mib": 1.664,
+            "peak_total_bytes": 10657792,
+            "baseline_bytes": 8912896,
+            "p50_ms": 1.478,
+            "p95_ms": 1.662,
+            "mean_ms": 1.42,
+            "reps": 12,
+            "block_nnz": 31,
+            "block_density": 0.12109375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 2416640,
+            "transient_mib": 2.305,
+            "peak_total_bytes": 11329536,
+            "baseline_bytes": 8912896,
+            "p50_ms": 1.389,
+            "p95_ms": 1.703,
+            "mean_ms": 1.425,
+            "reps": 12,
+            "block_nnz": 45,
+            "block_density": 0.17578125
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 4431872,
+            "transient_mib": 4.227,
+            "peak_total_bytes": 13344768,
+            "baseline_bytes": 8912896,
+            "p50_ms": 1.28,
+            "p95_ms": 1.557,
+            "mean_ms": 1.321,
+            "reps": 12,
+            "block_nnz": 63,
+            "block_density": 0.24609375
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 4431872,
+            "transient_mib": 4.227,
+            "peak_total_bytes": 13344768,
+            "baseline_bytes": 8912896,
+            "p50_ms": 1.348,
+            "p95_ms": 1.666,
+            "mean_ms": 1.388,
+            "reps": 12,
+            "block_nnz": 63,
+            "block_density": 0.24609375
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 404480,
+            "transient_mib": 0.386,
+            "peak_total_bytes": 9317376,
+            "baseline_bytes": 8912896,
+            "p50_ms": 8.213,
+            "p95_ms": 9.73,
+            "mean_ms": 8.424,
+            "reps": 12,
+            "block_nnz": 63,
+            "block_density": 0.24609375
+          }
+        },
+        "fixed_bytes": 8912896
+      },
+      {
+        "n": 2048,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "ok",
+            "transient_bytes": 20987904,
+            "transient_mib": 20.016,
+            "peak_total_bytes": 30294016,
+            "baseline_bytes": 9306112,
+            "p50_ms": 0.617,
+            "p95_ms": 0.619,
+            "mean_ms": 0.617,
+            "reps": 12,
+            "block_nnz": 528,
+            "block_density": 0.515625
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 262144,
+            "transient_mib": 0.25,
+            "peak_total_bytes": 9568256,
+            "baseline_bytes": 9306112,
+            "p50_ms": 0.309,
+            "p95_ms": 0.316,
+            "mean_ms": 0.309,
+            "reps": 12,
+            "block_nnz": 528,
+            "block_density": 0.515625
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 3489792,
+            "transient_mib": 3.328,
+            "peak_total_bytes": 12795904,
+            "baseline_bytes": 9306112,
+            "p50_ms": 1.2,
+            "p95_ms": 1.689,
+            "mean_ms": 1.219,
+            "reps": 12,
+            "block_nnz": 63,
+            "block_density": 0.0615234375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 4833280,
+            "transient_mib": 4.609,
+            "peak_total_bytes": 14139392,
+            "baseline_bytes": 9306112,
+            "p50_ms": 1.301,
+            "p95_ms": 1.373,
+            "mean_ms": 1.308,
+            "reps": 12,
+            "block_nnz": 93,
+            "block_density": 0.0908203125
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 14893056,
+            "transient_mib": 14.203,
+            "peak_total_bytes": 24199168,
+            "baseline_bytes": 9306112,
+            "p50_ms": 1.419,
+            "p95_ms": 1.85,
+            "mean_ms": 1.463,
+            "reps": 12,
+            "block_nnz": 191,
+            "block_density": 0.1865234375
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 14893056,
+            "transient_mib": 14.203,
+            "peak_total_bytes": 24199168,
+            "baseline_bytes": 9306112,
+            "p50_ms": 1.418,
+            "p95_ms": 1.641,
+            "mean_ms": 1.453,
+            "reps": 12,
+            "block_nnz": 191,
+            "block_density": 0.1865234375
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 717824,
+            "transient_mib": 0.685,
+            "peak_total_bytes": 10023936,
+            "baseline_bytes": 9306112,
+            "p50_ms": 16.737,
+            "p95_ms": 20.107,
+            "mean_ms": 17.255,
+            "reps": 12,
+            "block_nnz": 191,
+            "block_density": 0.1865234375
+          }
+        },
+        "fixed_bytes": 9306112
+      },
+      {
+        "n": 4096,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "ok",
+            "transient_bytes": 83918848,
+            "transient_mib": 80.031,
+            "peak_total_bytes": 94011392,
+            "baseline_bytes": 10092544,
+            "p50_ms": 2.169,
+            "p95_ms": 2.176,
+            "mean_ms": 2.17,
+            "reps": 12,
+            "block_nnz": 2080,
+            "block_density": 0.5078125
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 524288,
+            "transient_mib": 0.5,
+            "peak_total_bytes": 10616832,
+            "baseline_bytes": 10092544,
+            "p50_ms": 0.553,
+            "p95_ms": 0.572,
+            "mean_ms": 0.555,
+            "reps": 12,
+            "block_nnz": 2080,
+            "block_density": 0.5078125
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 6979584,
+            "transient_mib": 6.656,
+            "peak_total_bytes": 17072128,
+            "baseline_bytes": 10092544,
+            "p50_ms": 1.392,
+            "p95_ms": 1.944,
+            "mean_ms": 1.469,
+            "reps": 12,
+            "block_nnz": 127,
+            "block_density": 0.031005859375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 9666560,
+            "transient_mib": 9.219,
+            "peak_total_bytes": 19759104,
+            "baseline_bytes": 10092544,
+            "p50_ms": 1.95,
+            "p95_ms": 2.341,
+            "mean_ms": 1.883,
+            "reps": 12,
+            "block_nnz": 189,
+            "block_density": 0.046142578125
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 49971200,
+            "transient_mib": 47.656,
+            "peak_total_bytes": 60063744,
+            "baseline_bytes": 10092544,
+            "p50_ms": 10.356,
+            "p95_ms": 11.256,
+            "mean_ms": 10.47,
+            "reps": 12,
+            "block_nnz": 639,
+            "block_density": 0.156005859375
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 49971200,
+            "transient_mib": 47.656,
+            "peak_total_bytes": 60063744,
+            "baseline_bytes": 10092544,
+            "p50_ms": 3.953,
+            "p95_ms": 4.985,
+            "mean_ms": 4.231,
+            "reps": 12,
+            "block_nnz": 639,
+            "block_density": 0.156005859375
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 1344512,
+            "transient_mib": 1.282,
+            "peak_total_bytes": 11437056,
+            "baseline_bytes": 10092544,
+            "p50_ms": 40.42,
+            "p95_ms": 42.796,
+            "mean_ms": 40.299,
+            "reps": 12,
+            "block_nnz": 639,
+            "block_density": 0.156005859375
+          }
+        },
+        "fixed_bytes": 10092544
+      },
+      {
+        "n": 8192,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "ok",
+            "transient_bytes": 335609856,
+            "transient_mib": 320.062,
+            "peak_total_bytes": 347275264,
+            "baseline_bytes": 11665408,
+            "p50_ms": 9.592,
+            "p95_ms": 9.702,
+            "mean_ms": 9.613,
+            "reps": 12,
+            "block_nnz": 8256,
+            "block_density": 0.50390625
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 1048576,
+            "transient_mib": 1.0,
+            "peak_total_bytes": 12713984,
+            "baseline_bytes": 11665408,
+            "p50_ms": 1.037,
+            "p95_ms": 1.109,
+            "mean_ms": 1.045,
+            "reps": 12,
+            "block_nnz": 8256,
+            "block_density": 0.50390625
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 13959168,
+            "transient_mib": 13.312,
+            "peak_total_bytes": 25624576,
+            "baseline_bytes": 11665408,
+            "p50_ms": 2.991,
+            "p95_ms": 3.363,
+            "mean_ms": 2.798,
+            "reps": 12,
+            "block_nnz": 255,
+            "block_density": 0.01556396484375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 19333120,
+            "transient_mib": 18.438,
+            "peak_total_bytes": 30998528,
+            "baseline_bytes": 11665408,
+            "p50_ms": 2.205,
+            "p95_ms": 2.268,
+            "mean_ms": 2.15,
+            "reps": 12,
+            "block_nnz": 381,
+            "block_density": 0.02325439453125
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 186974208,
+            "transient_mib": 178.312,
+            "peak_total_bytes": 198639616,
+            "baseline_bytes": 11665408,
+            "p50_ms": 9.089,
+            "p95_ms": 9.766,
+            "mean_ms": 9.157,
+            "reps": 12,
+            "block_nnz": 2303,
+            "block_density": 0.14056396484375
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 186974208,
+            "transient_mib": 178.312,
+            "peak_total_bytes": 198639616,
+            "baseline_bytes": 11665408,
+            "p50_ms": 8.998,
+            "p95_ms": 10.38,
+            "mean_ms": 9.21,
+            "reps": 12,
+            "block_nnz": 2303,
+            "block_density": 0.14056396484375
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 2597888,
+            "transient_mib": 2.478,
+            "peak_total_bytes": 14263296,
+            "baseline_bytes": 11665408,
+            "p50_ms": 94.916,
+            "p95_ms": 114.775,
+            "mean_ms": 96.662,
+            "reps": 12,
+            "block_nnz": 2303,
+            "block_density": 0.14056396484375
+          }
+        },
+        "fixed_bytes": 11665408
+      },
+      {
+        "n": 16384,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "ok",
+            "transient_bytes": 1342308352,
+            "transient_mib": 1280.125,
+            "peak_total_bytes": 1357119488,
+            "baseline_bytes": 14811136,
+            "p50_ms": 26.111,
+            "p95_ms": 26.773,
+            "mean_ms": 25.882,
+            "reps": 12,
+            "block_nnz": 32896,
+            "block_density": 0.501953125
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 2097152,
+            "transient_mib": 2.0,
+            "peak_total_bytes": 16908288,
+            "baseline_bytes": 14811136,
+            "p50_ms": 2.633,
+            "p95_ms": 3.2,
+            "mean_ms": 2.773,
+            "reps": 12,
+            "block_nnz": 32896,
+            "block_density": 0.501953125
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 27918336,
+            "transient_mib": 26.625,
+            "peak_total_bytes": 42729472,
+            "baseline_bytes": 14811136,
+            "p50_ms": 3.015,
+            "p95_ms": 3.208,
+            "mean_ms": 2.999,
+            "reps": 12,
+            "block_nnz": 511,
+            "block_density": 0.0077972412109375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 38666240,
+            "transient_mib": 36.875,
+            "peak_total_bytes": 53477376,
+            "baseline_bytes": 14811136,
+            "p50_ms": 3.479,
+            "p95_ms": 3.7,
+            "mean_ms": 3.419,
+            "reps": 12,
+            "block_nnz": 765,
+            "block_density": 0.0116729736328125
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 715784192,
+            "transient_mib": 682.625,
+            "peak_total_bytes": 730595328,
+            "baseline_bytes": 14811136,
+            "p50_ms": 28.73,
+            "p95_ms": 29.493,
+            "mean_ms": 28.888,
+            "reps": 12,
+            "block_nnz": 8703,
+            "block_density": 0.1327972412109375
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 715784192,
+            "transient_mib": 682.625,
+            "peak_total_bytes": 730595328,
+            "baseline_bytes": 14811136,
+            "p50_ms": 28.388,
+            "p95_ms": 29.318,
+            "mean_ms": 28.585,
+            "reps": 12,
+            "block_nnz": 8703,
+            "block_density": 0.1327972412109375
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 5104640,
+            "transient_mib": 4.868,
+            "peak_total_bytes": 19915776,
+            "baseline_bytes": 14811136,
+            "p50_ms": 271.113,
+            "p95_ms": 303.106,
+            "mean_ms": 270.032,
+            "reps": 12,
+            "block_nnz": 8703,
+            "block_density": 0.1327972412109375
+          }
+        },
+        "fixed_bytes": 14811136
+      },
+      {
+        "n": 32768,
+        "d": 64,
+        "dtype": "float16",
+        "modes": {
+          "full_materialised": {
+            "status": "oom",
+            "error": "CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 6.00 GiB of which 346.00 MiB is free. Of the allocated memory 3.02 GiB is allocate"
+          },
+          "full_sdpa": {
+            "status": "ok",
+            "transient_bytes": 4194304,
+            "transient_mib": 4.0,
+            "peak_total_bytes": 25296896,
+            "baseline_bytes": 21102592,
+            "p50_ms": 11.951,
+            "p95_ms": 12.221,
+            "mean_ms": 11.961,
+            "reps": 12,
+            "block_nnz": 131328,
+            "block_density": 0.5009765625
+          },
+          "sliding": {
+            "status": "ok",
+            "transient_bytes": 55836672,
+            "transient_mib": 53.25,
+            "peak_total_bytes": 76939264,
+            "baseline_bytes": 21102592,
+            "p50_ms": 5.763,
+            "p95_ms": 6.012,
+            "mean_ms": 5.725,
+            "reps": 12,
+            "block_nnz": 1023,
+            "block_density": 0.003902435302734375
+          },
+          "longformer_global": {
+            "status": "ok",
+            "transient_bytes": 77332480,
+            "transient_mib": 73.75,
+            "peak_total_bytes": 98435072,
+            "baseline_bytes": 21102592,
+            "p50_ms": 6.343,
+            "p95_ms": 7.164,
+            "mean_ms": 6.453,
+            "reps": 12,
+            "block_nnz": 1533,
+            "block_density": 0.005847930908203125
+          },
+          "nsa_like": {
+            "status": "ok",
+            "transient_bytes": 2807300096,
+            "transient_mib": 2677.25,
+            "peak_total_bytes": 2828402688,
+            "baseline_bytes": 21102592,
+            "p50_ms": 111.937,
+            "p95_ms": 117.817,
+            "mean_ms": 111.554,
+            "reps": 12,
+            "block_nnz": 33791,
+            "block_density": 0.12890243530273438
+          },
+          "pswa": {
+            "status": "ok",
+            "transient_bytes": 2807300096,
+            "transient_mib": 2677.25,
+            "peak_total_bytes": 2828402688,
+            "baseline_bytes": 21102592,
+            "p50_ms": 108.079,
+            "p95_ms": 109.991,
+            "mean_ms": 108.276,
+            "reps": 12,
+            "block_nnz": 33791,
+            "block_density": 0.12890243530273438
+          },
+          "pswa_stream": {
+            "status": "ok",
+            "transient_bytes": 10986496,
+            "transient_mib": 10.478,
+            "peak_total_bytes": 32089088,
+            "baseline_bytes": 21102592,
+            "p50_ms": 870.847,
+            "p95_ms": 940.287,
+            "mean_ms": 859.95,
+            "reps": 12,
+            "block_nnz": 33791,
+            "block_density": 0.12890243530273438
+          }
+        },
+        "fixed_bytes": 21102592
+      }
+    ],
+    "w": 64,
+    "g": 256,
+    "s": 4,
+    "block": 64,
+    "device": {
+      "cuda": true,
+      "name": "NVIDIA GeForce RTX 2060",
+      "total_memory_bytes": 6441992192,
+      "sm_count": 30,
+      "capability": "7.5",
+      "torch": "2.2.1",
+      "cuda_build": "11.8",
+      "free_bytes_at_start": 4680843264
+    }
+  },
+  "per_n": [
+    {
+      "n": 256,
+      "full_materialised_status": "ok",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_materialised": -0.8323,
+      "pswa_latency_speedup_vs_materialised": 0.246,
+      "pswa_vram_reduction_vs_sdpa": -17.4375,
+      "pswa_latency_speedup_vs_sdpa": 0.071,
+      "pswa_stream_vram_reduction_vs_materialised": 0.486,
+      "pswa_stream_latency_speedup_vs_materialised": 0.129,
+      "pswa_stream_vram_reduction_vs_sdpa": -4.1719,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.037
+    },
+    {
+      "n": 512,
+      "full_materialised_status": "ok",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_materialised": -0.1745,
+      "pswa_latency_speedup_vs_materialised": 0.284,
+      "pswa_vram_reduction_vs_sdpa": -22.5625,
+      "pswa_latency_speedup_vs_sdpa": 0.092,
+      "pswa_stream_vram_reduction_vs_materialised": 0.8115,
+      "pswa_stream_latency_speedup_vs_materialised": 0.07,
+      "pswa_stream_vram_reduction_vs_sdpa": -2.7812,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.023
+    },
+    {
+      "n": 1024,
+      "full_materialised_status": "ok",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_materialised": 0.156,
+      "pswa_latency_speedup_vs_materialised": 0.299,
+      "pswa_vram_reduction_vs_sdpa": -32.8125,
+      "pswa_latency_speedup_vs_sdpa": 0.123,
+      "pswa_stream_vram_reduction_vs_materialised": 0.923,
+      "pswa_stream_latency_speedup_vs_materialised": 0.049,
+      "pswa_stream_vram_reduction_vs_sdpa": -2.0859,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.02
+    },
+    {
+      "n": 2048,
+      "full_materialised_status": "ok",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_materialised": 0.2904,
+      "pswa_latency_speedup_vs_materialised": 0.435,
+      "pswa_vram_reduction_vs_sdpa": -55.8125,
+      "pswa_latency_speedup_vs_sdpa": 0.218,
+      "pswa_stream_vram_reduction_vs_materialised": 0.9658,
+      "pswa_stream_latency_speedup_vs_materialised": 0.037,
+      "pswa_stream_vram_reduction_vs_sdpa": -1.7383,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.018
+    },
+    {
+      "n": 4096,
+      "full_materialised_status": "ok",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_materialised": 0.4045,
+      "pswa_latency_speedup_vs_materialised": 0.549,
+      "pswa_vram_reduction_vs_sdpa": -94.3125,
+      "pswa_latency_speedup_vs_sdpa": 0.14,
+      "pswa_stream_vram_reduction_vs_materialised": 0.984,
+      "pswa_stream_latency_speedup_vs_materialised": 0.054,
+      "pswa_stream_vram_reduction_vs_sdpa": -1.5645,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.014
+    },
+    {
+      "n": 8192,
+      "full_materialised_status": "ok",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_materialised": 0.4429,
+      "pswa_latency_speedup_vs_materialised": 1.066,
+      "pswa_vram_reduction_vs_sdpa": -177.3125,
+      "pswa_latency_speedup_vs_sdpa": 0.115,
+      "pswa_stream_vram_reduction_vs_materialised": 0.9923,
+      "pswa_stream_latency_speedup_vs_materialised": 0.101,
+      "pswa_stream_vram_reduction_vs_sdpa": -1.4775,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.011
+    },
+    {
+      "n": 16384,
+      "full_materialised_status": "ok",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_materialised": 0.4668,
+      "pswa_latency_speedup_vs_materialised": 0.92,
+      "pswa_vram_reduction_vs_sdpa": -340.3125,
+      "pswa_latency_speedup_vs_sdpa": 0.093,
+      "pswa_stream_vram_reduction_vs_materialised": 0.9962,
+      "pswa_stream_latency_speedup_vs_materialised": 0.096,
+      "pswa_stream_vram_reduction_vs_sdpa": -1.4341,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.01
+    },
+    {
+      "n": 32768,
+      "full_materialised_status": "oom",
+      "full_sdpa_status": "ok",
+      "sliding_status": "ok",
+      "longformer_global_status": "ok",
+      "nsa_like_status": "ok",
+      "pswa_status": "ok",
+      "pswa_stream_status": "ok",
+      "pswa_vram_reduction_vs_sdpa": -668.3125,
+      "pswa_latency_speedup_vs_sdpa": 0.111,
+      "pswa_stream_vram_reduction_vs_sdpa": -1.6194,
+      "pswa_stream_latency_speedup_vs_sdpa": 0.014
+    }
+  ],
+  "claims": {
+    "vram_reduction_at_largest_n_vs_sdpa": -668.3125,
+    "latency_speedup_at_largest_n_vs_sdpa": 0.111,
+    "largest_n_with_both_measured": 32768,
+    "max_vram_reduction_vs_materialised": 0.4668,
+    "n_where_dense_oom_but_pswa_runs": [
+      32768
+    ],
+    "n_where_dense_skipped_but_pswa_runs": [],
+    "max_n_pswa_feasible": 32768
+  },
+  "assertions": {
+    "one_slope_per_mode_computed": true,
+    "pswa_runs_at_every_length_dense_could": true,
+    "every_ok_cell_has_positive_latency": true,
+    "oom_cells_are_labelled_not_imputed": true,
+    "cuda_measured": true,
+    "has_oom_or_skip_evidence": true
+  },
+  "hypotheses": {
+    "pswa_uses_less_vram_than_sdpa_at_largest_n": false,
+    "pswa_memory_is_subquadratic": false,
+    "dense_memory_is_quadratic": true,
+    "pswa_faster_than_dense_at_largest_n": false
+  },
+  "slopes": {
+    "full_materialised_transient": 1.9991920604004352,
+    "full_materialised_transient_full_range": 1.998690285659869,
+    "full_materialised_p50": 1.3465355351117299,
+    "full_sdpa_transient": 1.0000000000000013,
+    "full_sdpa_transient_full_range": 0.9999999999999997,
+    "full_sdpa_p50": 1.0775861320566493,
+    "sliding_transient": 1.0000000000000002,
+    "sliding_transient_full_range": 0.9999999999999992,
+    "sliding_p50": 0.4070244053794127,
+    "longformer_global_transient": 1.0000000000000013,
+    "longformer_global_transient_full_range": 0.9999999999999996,
+    "longformer_global_p50": 0.39318437445075444,
+    "nsa_like_transient": 1.8144786845237144,
+    "nsa_like_transient_full_range": 1.7559427792047115,
+    "nsa_like_p50": 1.1279000799256214,
+    "pswa_transient": 1.8144786845237144,
+    "pswa_transient_full_range": 1.7559427792047115,
+    "pswa_p50": 1.1110776492243106,
+    "pswa_stream_transient": 0.9136453334212082,
+    "pswa_stream_transient_full_range": 0.8679444562805927,
+    "pswa_stream_p50": 1.2582877896517286
+  },
+  "fit_range": {
+    "full_materialised_transient": {
+      "fit": [
+        512,
+        16384
+      ],
+      "n_points": 6,
+      "full_range": [
+        256,
+        16384
+      ],
+      "n_points_full": 7,
+      "floor_n": 512
+    },
+    "full_materialised_p50": {
+      "fit": [
+        512,
+        16384
+      ],
+      "n_points": 6,
+      "floor_n": 512
+    },
+    "full_sdpa_transient": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "full_range": [
+        256,
+        32768
+      ],
+      "n_points_full": 8,
+      "floor_n": 512
+    },
+    "full_sdpa_p50": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "floor_n": 512
+    },
+    "sliding_transient": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "full_range": [
+        256,
+        32768
+      ],
+      "n_points_full": 8,
+      "floor_n": 512
+    },
+    "sliding_p50": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "floor_n": 512
+    },
+    "longformer_global_transient": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "full_range": [
+        256,
+        32768
+      ],
+      "n_points_full": 8,
+      "floor_n": 512
+    },
+    "longformer_global_p50": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "floor_n": 512
+    },
+    "nsa_like_transient": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "full_range": [
+        256,
+        32768
+      ],
+      "n_points_full": 8,
+      "floor_n": 512
+    },
+    "nsa_like_p50": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "floor_n": 512
+    },
+    "pswa_transient": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "full_range": [
+        256,
+        32768
+      ],
+      "n_points_full": 8,
+      "floor_n": 512
+    },
+    "pswa_p50": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "floor_n": 512
+    },
+    "pswa_stream_transient": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "full_range": [
+        256,
+        32768
+      ],
+      "n_points_full": 8,
+      "floor_n": 512
+    },
+    "pswa_stream_p50": {
+      "fit": [
+        512,
+        32768
+      ],
+      "n_points": 7,
+      "floor_n": 512
+    }
+  },
+  "refuted": [
+    "pswa_faster_than_dense_at_largest_n",
+    "pswa_memory_is_subquadratic",
+    "pswa_uses_less_vram_than_sdpa_at_largest_n"
+  ],
+  "config_note": "g is the PRE-REGISTERED control period; it is NOT data-derived (see s1_pswa/period_estimation)"
+}

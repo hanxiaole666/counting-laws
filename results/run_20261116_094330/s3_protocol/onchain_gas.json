@@ -1,0 +1,44 @@
+{
+  "stage": "s3_protocol",
+  "unit": "onchain_gas",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:29Z",
+  "suite_version": "1.0.0",
+  "solc": "0.8.20",
+  "deploy_gas": 343126,
+  "per_tx_log_gas": [
+    23154,
+    23154,
+    23154,
+    23154,
+    23154
+  ],
+  "per_tx_log_gas_mean": 23154.0,
+  "per_tx_log_gas_std": 0.0,
+  "batch_root_gas": 67600,
+  "verify_inclusion_gas": 37310,
+  "merkle_depth": 10,
+  "batch_size": 1000,
+  "total_gas_per_tx_design": 23154000,
+  "total_gas_batch_design": 67600,
+  "gas_saving_fraction": 0.9971,
+  "calldata_bytes_per_tx_design": 36,
+  "calldata_bytes_batch_design": 36,
+  "cost_reference": {
+    "gas_price_gwei": 20.0,
+    "eth_usd": 3000.0,
+    "usd_per_tx_per_tx_design": 1.38924,
+    "usd_per_tx_batch_design": 0.004056,
+    "note": "reference pricing, not a market quote: change the two constants and every figure rescales linearly"
+  },
+  "elapsed_s": 5.85,
+  "source": "py-evm ShanghaiVM + solc 0.8.20; per-tx cost = gas supplied - gas remaining (receipt.gas_used is block-cumulative on MiningChain and was explicitly NOT used)",
+  "assertions": {
+    "gas_measured_on_evm": true,
+    "per_tx_cost_reproducible": true,
+    "batch_design_cheaper": true,
+    "inclusion_proof_verifiable_onchain": true
+  }
+}

@@ -1,0 +1,141 @@
+\section{Measurement protocol}\label{sec:protocol}
+
+The claims in this paper are of a kind that is easy to state and hard to check, so
+the apparatus is part of the contribution and is described before the results.
+Three mechanisms do the work: unit-level provenance, a separation between claims
+that must be true and claims that may be false, and an explicit refusal to
+substitute estimates for measurements. The full recipe is in
+\ref{app:artifact}.
+
+\subsection{Unit-level provenance and crash-safe resume}
+
+Each experiment is a \emph{unit} that writes exactly one JSON result file
+containing the measurements, the configuration, the device, and two dictionaries:
+\texttt{assertions} and \texttt{hypotheses}. A unit is marked \texttt{running}
+before it starts and \texttt{done} only after its file exists and hashes to the
+recorded digest; a killed process leaves \texttt{running}, which becomes
+\texttt{interrupted} on the next launch and is re-executed. Completed units are
+skipped by content hash. Every figure and table in this paper is generated from
+these files at build time: the LaTeX source contains no typed measurement, and
+the number of macros emitted by the build script equals the number of quantities
+the text uses. This is what allows the sentence ``\VramPswaBig\,MiB at
+$n=\LargestN$'' to be checkable rather than merely plausible.
+
+A dependency fingerprint guards the derived layer. The figure stage records the
+digests of the result files it consumed; if any upstream unit is re-run, the
+digest changes, the figure unit is invalidated and regenerated. The mechanism was
+added after it failed: a device benchmark was re-measured, the figure stage
+reported \texttt{skipped} because its own output existed, and the repository
+briefly contained a figure that did not correspond to the results beside it. A
+protocol that can produce that failure silently is not adequate for a paper whose
+argument is about measurement.
+
+\subsection{Assertions versus hypotheses}\label{sec:audit}
+
+The distinction is small and consequential. An \emph{assertion} is an internal
+consistency requirement: that the mask is sparse, that the outputs are finite,
+that two variants differ, that a bound holds. If an assertion is false the
+artefact is broken and the run must fail. A \emph{hypothesis} is a scientific
+claim: that sparsity saves memory, that a periodic anchor is supported by the
+data, that adaptation helps. A hypothesis may be false, and when it is, the
+correct outcome is a recorded refutation and a rewritten paper, not a failed run.
+
+Conflating the two is not a cosmetic error. In an earlier version of this
+apparatus both dictionaries were merged, so a refuted hypothesis made the
+verification gate fail, and the cheapest way to a green run was to weaken the
+claim until it passed. Separating them removed that incentive: the gate now
+requires every assertion to be true and merely \emph{reports} the hypotheses that
+came out false. Section~\ref{sec:attn_withdraw} lists what this caught in our own
+work.
+
+Two further rules apply to every unit. A measurement that could not be taken is
+recorded as \texttt{blocked} with the command that would unblock it, and never
+replaced by an estimate or a value borrowed from the literature. A quantity that
+the pipeline could not compute, whether a parse failure, a missing class or a
+degenerate split, is recorded as a failure and counted, never imputed;
+Section~\ref{sec:lang} shows what imputation would have done to the headline
+number of the language-model experiment.
+
+\subsection{Device benchmark protocol}\label{sec:device_protocol}
+
+Six decisions determine whether a memory measurement means anything, and we state
+all six because three of them were wrong in our first attempt.
+
+\begin{enumerate}\itemsep2pt
+\item \emph{Baseline decontamination.} Peak memory is reported as the difference
+between the maximum allocated bytes during the operation and the allocation
+immediately before it, after \texttt{gc.collect()} and
+\texttt{torch.cuda.empty\_cache()}, with the peak counter reset \emph{after} the
+query, key and value tensors exist. Without the reset, a stale tensor inflated the
+baseline by $8.5$\,MiB in our first run and produced impossible numbers at the
+smallest length.
+\item \emph{Two dense baselines.} We report a naive dense implementation, which
+materialises the $n\times n$ score matrix, and a fused kernel
+\cite{dao2022flashattention} that does not. The first is the baseline that
+inflates a sparse saving; the second is the competitor a real system faces. Both
+are reported for every length.
+\item \emph{Two sparse implementations.} A batched variant (one gather plus one
+batched matrix product per sequence, the way a production kernel would run) and a
+block-streaming variant (minimal live memory, one launch per query block). The
+second exists so that a memory claim cannot be dismissed as an artefact of an
+inefficient gather. The two are reported separately and they behave very
+differently, which is itself a result.
+\item \emph{Omission is a datum.} An out-of-memory outcome is stored as
+\texttt{status="oom"}, never skipped and never interpolated; the largest length at
+which the dense path fails while a sparse path succeeds is reported as a measured
+quantity.
+\item \emph{Tail latency.} We report the median and the 95th percentile of
+\GpuReps{} repetitions after warm-up, with a device synchronisation around each
+repetition, because a mean over unsynchronised asynchronous launches is not a
+latency.
+\item \emph{Disclosure of implementation dependence.} The batched variant pads
+every query block to the largest number of key blocks required by \emph{any} block
+in the sequence, which is the last one. That choice is correct but not optimal,
+and it inflates its memory relative to a hand-tuned kernel; we quantify the
+consequence and scope the claim accordingly (Section~\ref{sec:attn_disclose}
+rather than in a footnote).
+\end{enumerate}
+
+\subsection{Elicitation protocol for language models}
+
+Two interfaces are measured on the same rows.
+\emph{Logit interface}: the model is asked a yes/no question, and the score is
+$p=P(\texttt{Yes})/\big(P(\texttt{Yes})+P(\texttt{No})\big)$ read at the answer
+position of a single forward pass, so no text is parsed and no failure mode
+exists. \emph{JSON interface}: the model is asked for a small JSON object, the
+output is parsed with a regular expression, and every unparsable answer is counted
+as a failure. The second interface is what practitioners do; the first exists to
+separate the cost of the model from the cost of the interface.
+
+Only the logits of the final position are computed, because materialising the full
+vocabulary distribution for a batch allocates $\text{batch}\times\text{seq}\times
+\lvert V\rvert$ floats and exhausts the device at the batch size we use. The
+adaptation experiment replaces the hard-coded targets of the original pipeline
+(which used the constants $0.90$ and $0.05$) with the per-row continuous
+probability predicted by the reference model on the training split, so the target
+has \TargetDistinct{} distinct values with standard deviation \TargetSd.
+
+\subsection{Statistical protocol}
+
+Systems are always compared on identical rows, and the comparison statistics are
+paired. For a ranking metric we use a paired permutation test over rows, which
+makes no distributional assumption about AUC-PR and is exact under exchangeability
+\cite{efron1993bootstrap}; we report the permutation $p$-value and the observed
+difference. For confidence intervals we bootstrap the difference with two
+resampling units: rows, and entities (cards), because several transactions share a
+card and the row unit understates the variance. The entity-level interval is the
+statistically correct one and we report both so the reader can see the difference.
+For paired decisions we use the exact McNemar test \cite{mcnemar1947note}, for
+score differences the DeLong test \cite{delong1988comparing}, and we control the
+family-wise error with Holm's step-down procedure \cite{holm1979simple}. The number
+of training seeds is set by an a-priori power calculation rather than by
+convention; the calculation is reported with its inputs in
+\ref{app:tables}.
+
+Calibration is reported with the Brier score and the expected calibration error
+before and after Platt scaling fitted on validation only
+\cite{guo2017calibration}. Fairness is reported as equalised-odds gaps
+\cite{hardt2016equality} on the attributes the second dataset provides. Both are
+reported even where they are unfavourable: Section~\ref{sec:system} reports a
+calibration intervention that does not help and a drift comparison that is
+confounded by prevalence.

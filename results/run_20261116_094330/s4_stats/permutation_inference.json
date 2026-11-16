@@ -1,0 +1,145 @@
+{
+  "stage": "s4_stats",
+  "unit": "permutation_inference",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:45:35Z",
+  "suite_version": "1.0.0",
+  "pairs": {
+    "gbdt_vs_linear": {
+      "permutation": {
+        "metric": "auc_pr",
+        "observed_delta": 0.26188685385261107,
+        "p_two_sided": 0.0,
+        "n_perm": 1000,
+        "null_q": {
+          "q025": -0.041964941093712155,
+          "q500": -0.0010722093082269901,
+          "q975": 0.04209969988544277
+        },
+        "note": "row-wise exchangeability under H0; no distributional assumption on the metric"
+      },
+      "bootstrap_rows": {
+        "B": 400,
+        "resample_unit": "row",
+        "delta_auc_pr_mean": 0.2616540929749542,
+        "delta_auc_pr_ci95": [
+          0.22796107612507743,
+          0.2996030889949642
+        ],
+        "delta_recall_at_1pct_fpr_ci95": [
+          0.21289802065404476,
+          0.29234493999327577
+        ],
+        "a_auc_pr_ci95": [
+          0.3956403447222551,
+          0.47030591022829205
+        ],
+        "b_auc_pr_ci95": [
+          0.14820347399028533,
+          0.19801747234066672
+        ],
+        "p_delta_positive": 1.0
+      },
+      "bootstrap_entities": {
+        "B": 400,
+        "resample_unit": "entity",
+        "delta_auc_pr_mean": 0.26188654250238386,
+        "delta_auc_pr_ci95": [
+          0.22123929268259085,
+          0.3026705602990507
+        ],
+        "delta_recall_at_1pct_fpr_ci95": [
+          0.1958702606635071,
+          0.30802891770617985
+        ],
+        "a_auc_pr_ci95": [
+          0.3719511187522323,
+          0.4982134922205838
+        ],
+        "b_auc_pr_ci95": [
+          0.13158759694843244,
+          0.21586093123793706
+        ],
+        "p_delta_positive": 1.0
+      }
+    },
+    "cascade_vs_gbdt": {
+      "permutation": {
+        "metric": "auc_pr",
+        "observed_delta": 0.016184377854730148,
+        "p_two_sided": 0.0,
+        "n_perm": 1000,
+        "null_q": {
+          "q025": -0.008059379533713839,
+          "q500": -6.29932442568204e-05,
+          "q975": 0.007922382399652698
+        },
+        "note": "row-wise exchangeability under H0; no distributional assumption on the metric"
+      },
+      "bootstrap_rows": {
+        "B": 400,
+        "resample_unit": "row",
+        "delta_auc_pr_mean": 0.015825692780267485,
+        "delta_auc_pr_ci95": [
+          0.008373872492512357,
+          0.02315915366870171
+        ],
+        "delta_recall_at_1pct_fpr_ci95": [
+          -0.015887713109935333,
+          0.010055123461451345
+        ],
+        "a_auc_pr_ci95": [
+          0.41091385234237476,
+          0.4878736612826235
+        ],
+        "b_auc_pr_ci95": [
+          0.3956403447222551,
+          0.47030591022829205
+        ],
+        "p_delta_positive": 1.0
+      },
+      "bootstrap_entities": {
+        "B": 400,
+        "resample_unit": "entity",
+        "delta_auc_pr_mean": 0.01542596920358422,
+        "delta_auc_pr_ci95": [
+          0.005186320120208287,
+          0.02635147696153982
+        ],
+        "delta_recall_at_1pct_fpr_ci95": [
+          -0.01579778830963663,
+          0.016196386970629816
+        ],
+        "a_auc_pr_ci95": [
+          0.387843281558876,
+          0.5140862505429695
+        ],
+        "b_auc_pr_ci95": [
+          0.3719511187522323,
+          0.4982134922205838
+        ],
+        "p_delta_positive": 1.0
+      }
+    }
+  },
+  "n_rows": 20000,
+  "systems": {
+    "gbdt": {
+      "auc_pr": 0.4334654550354656
+    },
+    "linear": {
+      "auc_pr": 0.1715786011828545
+    },
+    "cascade": {
+      "auc_pr": 0.4496498328901957
+    }
+  },
+  "note": "bootstrap is reported for BOTH resampling units; the entity unit is the statistically correct one when several transactions share a card",
+  "assertions": {
+    "permutation_computed": true,
+    "all_systems_on_same_rows": true,
+    "entity_ci_not_narrower_than_row_ci": true
+  }
+}

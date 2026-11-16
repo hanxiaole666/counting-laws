@@ -1,0 +1,34 @@
+{
+  "stage": "s5_baselines",
+  "unit": "field_ladder",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:45:59Z",
+  "suite_version": "1.0.0",
+  "rows": [
+    {
+      "n_fields": 11,
+      "auc_pr": 0.3302716813195756,
+      "recall_at_fpr_1pct": 0.29734848484848486
+    },
+    {
+      "n_fields": 20,
+      "auc_pr": 0.3318811016876188,
+      "recall_at_fpr_1pct": 0.23200757575757575
+    },
+    {
+      "n_fields": 40,
+      "auc_pr": 0.4551044083830513,
+      "recall_at_fpr_1pct": 0.38636363636363635
+    },
+    {
+      "n_fields": 80,
+      "auc_pr": 0.45684458896050656,
+      "recall_at_fpr_1pct": 0.3816287878787879
+    }
+  ],
+  "assertions": {
+    "ladder_monotone_information": true
+  }
+}

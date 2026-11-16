@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite it."
+title: "VERI-FinRisk: Cost-Aware and Verifiable Risk Inference on Memory-Constrained Edge Nodes"
+type: software
+version: 0.2.0-draft
+date-released: 2026-11-15
+license: MIT
+repository-code: "local artifact (no public repository yet)"
+abstract: >-
+  Reproducibility suite for a rebuilt fraud-risk inference study: explicit
+  sparse attention with a falsifiable retained-mass bound, field-aligned
+  representation ablations, commitment-anchoring with unpredictable challenge
+  recomputation and an exact soundness bound, ten-seed statistical protocol,
+  automatic dataset acquisition and crash-safe checkpoint/resume.
+keywords:
+  - fraud detection
+  - verifiable inference
+  - sparse attention
+  - reproducibility
+  - artifact evaluation
+# DOI is intentionally absent: no Zenodo deposit has been created yet.
+# Do not invent one. After depositing, add: doi: 10.5281/zenodo.<id>

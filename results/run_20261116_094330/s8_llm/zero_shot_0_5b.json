@@ -1,0 +1,112 @@
+{
+  "stage": "s8_llm",
+  "unit": "zero_shot_0_5b",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:47:03Z",
+  "suite_version": "1.0.0",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "weights": "D:\\Financial Micro-Modelling Project\\edge-trusted-fintrisk-ae\\.hf_cache\\models\\qwen2.5-0.5b-instruct",
+  "interface_choice": "P(Yes)/(P(Yes)+P(No)) at the answer slot",
+  "interface_json": "free-form JSON generation + regex parse",
+  "elicitation": {
+    "choice": {
+      "llm": {
+        "auc_pr": 0.07670792661676423,
+        "auc_roc": 0.6411514648481313,
+        "f1": 0.075,
+        "recall_at_fpr_1pct": 0.04838709677419355,
+        "precision": 0.16666666666666666,
+        "recall": 0.04838709677419355
+      },
+      "gbdt_same_rows": {
+        "auc_pr": 0.5294756085858027,
+        "auc_roc": 0.9053008210327964,
+        "f1": 0.43564356435643564,
+        "recall_at_fpr_1pct": 0.3548387096774194,
+        "precision": 0.5641025641025641,
+        "recall": 0.3548387096774194
+      },
+      "delta_auc_pr_gbdt_minus_llm": 0.45276768196903844,
+      "permutation": {
+        "metric": "auc_pr",
+        "observed_delta": 0.45276768196903844,
+        "p_two_sided": 0.0,
+        "n_perm": 1000,
+        "null_q": {
+          "q025": -0.14143104031420148,
+          "q500": 0.0009226346784044215,
+          "q975": 0.15567979705223453
+        },
+        "note": "row-wise exchangeability under H0; no distributional assumption on the metric"
+      },
+      "bootstrap": {
+        "B": 400,
+        "resample_unit": "row",
+        "delta_auc_pr_mean": 0.4415730602479711,
+        "delta_auc_pr_ci95": [
+          0.3044471796575289,
+          0.570669929436091
+        ],
+        "delta_recall_at_1pct_fpr_ci95": [
+          0.15254237288135594,
+          0.44130090497737545
+        ],
+        "a_auc_pr_ci95": [
+          0.3880621421351749,
+          0.6475289377165613
+        ],
+        "b_auc_pr_ci95": [
+          0.05302179258535183,
+          0.13191804476034363
+        ],
+        "p_delta_positive": 1.0
+      },
+      "n_rows": 1500,
+      "n_positives": 62
+    },
+    "choice_latency": {
+      "p50_ms_per_row": 6.29,
+      "p95_ms_per_row": 6.36,
+      "throughput_rows_per_s": 118.71
+    },
+    "choice_total_seconds": 13.2
+  },
+  "json_interface": {
+    "n_rows": 200,
+    "parse_failures": 200,
+    "parse_failure_rate": 1.0,
+    "distinct_scores": 1,
+    "raw_samples": [
+      " No. \n\nThis transaction appears to be legitimate, as it includes all required fields (TransactionAmt, ProductCD, etc",
+      " No. \n\nThis transaction appears to be legitimate, as it includes all required fields (TransactionAmt, ProductCD, etc",
+      " No. \n\nThis transaction appears to be legitimate, as it includes all required fields (TransactionAmt, ProductCD, etc",
+      " No. \n\nThis transaction appears to be legitimate, as it includes all required fields (TransactionAmt, ProductCD, etc",
+      " No. \n\nThis transaction appears to be legitimate, as it includes all required fields for a valid credit card transaction"
+    ],
+    "latency": {
+      "p50_ms_per_row": 139.49,
+      "p95_ms_per_row": 152.27,
+      "throughput_rows_per_s": 7.09
+    }
+  },
+  "vram": {
+    "cuda": true,
+    "allocated_bytes": 1240791040,
+    "peak_bytes": 1436376064,
+    "params_of_device_gib": 6.0
+  },
+  "gbdt_reference": {
+    "auc_pr": 0.5294756085858027,
+    "threshold_from_validation": 0.20596422738496742
+  },
+  "claims": {
+    "llm_within_2pp_of_gbdt": false
+  },
+  "assertions": {
+    "scores_are_not_constant": true,
+    "no_fabricated_fallback_score": true,
+    "parse_failures_counted": true
+  }
+}

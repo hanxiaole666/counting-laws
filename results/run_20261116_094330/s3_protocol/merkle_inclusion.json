@@ -1,0 +1,70 @@
+{
+  "stage": "s3_protocol",
+  "unit": "merkle_inclusion",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:22Z",
+  "suite_version": "1.0.0",
+  "n_records": 128,
+  "root": "0x6ff875ae8577d2d9175aad1a92608eeaa39d3297478dbd36fa29b78d4e7989ce",
+  "single_record_checks": [
+    {
+      "index": 0,
+      "proof_len": 7,
+      "valid": true,
+      "tampered_rejected": true
+    },
+    {
+      "index": 1,
+      "proof_len": 7,
+      "valid": true,
+      "tampered_rejected": true
+    },
+    {
+      "index": 17,
+      "proof_len": 7,
+      "valid": true,
+      "tampered_rejected": true
+    },
+    {
+      "index": 63,
+      "proof_len": 7,
+      "valid": true,
+      "tampered_rejected": true
+    },
+    {
+      "index": 127,
+      "proof_len": 7,
+      "valid": true,
+      "tampered_rejected": true
+    }
+  ],
+  "third_party_verification": {
+    "onchain_data_available": [
+      "merkle_root",
+      "model_digest",
+      "cfg_digest"
+    ],
+    "private_data_used_by_verifier": [],
+    "opening_fields": [
+      "salt",
+      "input_digest",
+      "model_digest",
+      "cfg_digest",
+      "score",
+      "weights_digest"
+    ],
+    "score_match": true,
+    "commitment_match": true,
+    "inclusion_proof_valid": true
+  },
+  "onchain_bytes_per_batch": 32,
+  "assertions": {
+    "all_inclusion_proofs_valid": true,
+    "all_tampered_rejected": true,
+    "third_party_no_private_data": true,
+    "third_party_score_match": true,
+    "third_party_commit_and_proof_valid": true
+  }
+}

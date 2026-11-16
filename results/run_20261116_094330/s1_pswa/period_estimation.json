@@ -1,0 +1,99 @@
+{
+  "stage": "s1_pswa",
+  "unit": "period_estimation",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:43:35Z",
+  "suite_version": "1.0.0",
+  "entity_length_distribution": {
+    "n_entities": 13553,
+    "median_len": 4.0,
+    "p90_len": 46.0,
+    "p99_len": 786.4399999999987,
+    "max_len": 14932,
+    "entities_ge_256": 344,
+    "entities_ge_1024": 100
+  },
+  "period_estimation": {
+    "status": "ok",
+    "sequences_used": 40,
+    "max_lag": 200,
+    "top_lags": [
+      {
+        "lag": 1,
+        "acf": 0.10263928997678166
+      },
+      {
+        "lag": 2,
+        "acf": 0.05593242531425182
+      },
+      {
+        "lag": 3,
+        "acf": 0.037442494406384225
+      },
+      {
+        "lag": 4,
+        "acf": 0.030572932648639313
+      },
+      {
+        "lag": 5,
+        "acf": 0.022927356307538067
+      },
+      {
+        "lag": 20,
+        "acf": 0.022632745812003464
+      },
+      {
+        "lag": 19,
+        "acf": 0.018268285014734202
+      },
+      {
+        "lag": 22,
+        "acf": 0.017937422090288764
+      }
+    ],
+    "short_lag_peaks": [
+      {
+        "lag": 1,
+        "acf": 0.10263928997678166
+      },
+      {
+        "lag": 2,
+        "acf": 0.05593242531425182
+      },
+      {
+        "lag": 3,
+        "acf": 0.037442494406384225
+      }
+    ],
+    "dominant_lag": 1,
+    "data_driven_dominant_lag": 1,
+    "weak_local_peak_lag": 20,
+    "weak_local_peak_acf": 0.022632745812003464,
+    "weak_peak_is_short_range_tail": true,
+    "anchor_g_evaluated": 96,
+    "anchor_band": [
+      48,
+      192
+    ],
+    "anchor_band_peak_lag": 65,
+    "anchor_band_peak_acf": 0.01657848268299677,
+    "acf_at_anchor_g": 0.005501734427036218,
+    "acf_noise_floor_sd": 0.005744046433325213,
+    "anchor_band_local_peak": true,
+    "periodic_peak_significant": false,
+    "interpretation": "The ACF is dominated by lag-1 short-range dependence. A weak local bump exists at lag 20 (ACF 0.0226), but at the anchor period g=96 the ACF is 0.0055 against a noise floor of 0.0057. No anchor period is supported by these data; g must be treated as a pre-registered control, not a learned parameter.",
+    "note": "Significance is evaluated in the band around the anchor period actually used; short-range ACF tails do not count."
+  },
+  "entity_key": "card1",
+  "entity_key_note": "mirror user_id is entirely NA; card1 used as entity key",
+  "config_g_original": 96,
+  "claims": {
+    "periodic_peak_significant": false,
+    "g_96_supported_by_data": false
+  },
+  "assertions": {
+    "period_estimation_completed": true
+  }
+}

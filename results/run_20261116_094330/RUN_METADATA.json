@@ -1,0 +1,237 @@
+{
+  "run_id": "run_20261116_094330",
+  "started_at": "2026-11-16T01:50:45Z",
+  "elapsed_s": 434.82,
+  "suite_version": "1.0.0",
+  "config": {
+    "datasets": [
+      "ieee_cis",
+      "baf"
+    ],
+    "seed": 20261115,
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "n_features": 40,
+    "train_rows": 60000,
+    "test_rows": 30000,
+    "curve_test_rows": 12000,
+    "fidelity_n": 1500,
+    "pswa_w": 256,
+    "pswa_w_eval": 64,
+    "pswa_g_eval": 96,
+    "pswa_g_candidates": [
+      24,
+      96,
+      192
+    ],
+    "pswa_w_grid": [
+      64,
+      128,
+      256
+    ],
+    "pswa_sink": 4,
+    "pswa_scan_ns": [
+      512,
+      1024,
+      2048
+    ],
+    "protocol_n": 500,
+    "protocol_N": 1000,
+    "mc_trials": 300,
+    "cheat_rates": [
+      0.01,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "challenge_rates": [
+      0.01,
+      0.05,
+      0.1,
+      0.25
+    ],
+    "dict_targets": 12,
+    "boot_B": 200,
+    "learning_sizes": [
+      16,
+      64,
+      256,
+      1024,
+      4096,
+      16384
+    ],
+    "field_ladder": [
+      11,
+      20,
+      40,
+      80
+    ],
+    "upgrade_rate": 0.1,
+    "gpu_ns": [
+      256,
+      512,
+      1024,
+      2048,
+      4096,
+      8192,
+      16384,
+      32768
+    ],
+    "gpu_reps": 12,
+    "pswa_g_gpu": 256,
+    "align_n": 4096,
+    "align_block": 64,
+    "align_w": 8,
+    "align_gs": [
+      32,
+      96,
+      128,
+      192,
+      256,
+      512
+    ],
+    "align_blocks": [
+      32,
+      64,
+      128,
+      256
+    ],
+    "align_g_fixed": 192,
+    "llm_rows": 1500,
+    "llm_text_rows": 200,
+    "llm_sft_rows": 900,
+    "llm_batch": 32,
+    "ladder_rows": 600,
+    "perm_rows": 20000,
+    "cost_rows": 20000,
+    "gas_batch": 1000,
+    "merkle_depth": 10
+  },
+  "config_sha256": "222d9cf106bed45fcf09903ec1d2a3cbd2b9bb43dcae31cc5215e02df0584fd5",
+  "environment": {
+    "python": "3.11.5",
+    "platform": "Windows-10-10.0.22631-SP0",
+    "executable": "C:\\Users\\apple\\anaconda3\\python.exe",
+    "utc": "2026-11-16T01:50:45Z",
+    "numpy": "1.26.4",
+    "pandas": "2.0.3",
+    "sklearn": "1.5.2",
+    "torch": "2.2.1",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 2060"
+  },
+  "data_manifest": {
+    "ieee_cis": {
+      "sha256": "62a14b59a946eb6e0c0d45ac56ed6eeb7dc014babeb04803653191bcb3ddd30d",
+      "card_sha256": "62a14b59a946eb6e0c0d45ac56ed6eeb7dc014babeb04803653191bcb3ddd30d",
+      "card_sha256_mismatch": null,
+      "size_bytes": 61668205,
+      "source": "https://hf-mirror.com/datasets/mkbadeniyi/fraud-detection-benchmark/resolve/main/fraud_datasets/ieee_cis_card_payments_real.parquet?download=true",
+      "mirror": "hf-mirror.com",
+      "downloaded_at": "2026-11-15T15:17:47Z",
+      "kind": "real",
+      "license": "third-party mirror of Kaggle IEEE-CIS (competition rules apply; NOT redistributable)",
+      "kaggle_alternative": "kaggle competitions download -c ieee-fraud-detection -p data/raw"
+    },
+    "baf": {
+      "sha256": "c740abdc176b28ce94db6c5892725087a62ae909dee74a8e9687742a2262bff7",
+      "card_sha256": null,
+      "card_sha256_mismatch": null,
+      "size_bytes": 65975918,
+      "source": "https://hf-mirror.com/datasets/mkbadeniyi/fraud-detection-benchmark/resolve/main/fraud_datasets/baf_bank_account_opening_synthetic.parquet?download=true",
+      "mirror": "hf-mirror.com",
+      "downloaded_at": "2026-11-15T15:18:25Z",
+      "kind": "synthetic (source-declared)",
+      "license": "BAF Suite, CC BY-NC-SA 4.0 (attribute; no commercial use; share-alike)",
+      "kaggle_alternative": "kaggle datasets download -v sgpjesus/bank-account-fraud-dataset-neurips-2022 -p data/raw"
+    }
+  },
+  "outcomes": {
+    "data": {
+      "data/ieee_cis": "done",
+      "data/baf": "done"
+    },
+    "s1_pswa": {
+      "s1_pswa/period_estimation": "done",
+      "s1_pswa/complexity_curve": "done",
+      "s1_pswa/quality_bound": "done",
+      "s1_pswa/long_sequence_scan": "done",
+      "s1_pswa/mode_comparison": "done",
+      "s1_pswa/gpu_memory_latency": "done",
+      "s1_pswa/block_alignment": "done"
+    },
+    "s2_gbl": {
+      "s2_gbl/fidelity_ablation": "done",
+      "s2_gbl/entity_sequences": "done"
+    },
+    "s3_protocol": {
+      "s3_protocol/merkle_inclusion": "done",
+      "s3_protocol/challenge_grid": "done",
+      "s3_protocol/predictable_attack": "done",
+      "s3_protocol/dictionary_attack": "done",
+      "s3_protocol/replay_determinism": "done",
+      "s3_protocol/onchain_gas": "done",
+      "s3_protocol/tee_attestation": "blocked"
+    },
+    "s4_stats": {
+      "s4_stats/seed_sweep": "done",
+      "s4_stats/inference": "done",
+      "s4_stats/calibration": "done",
+      "s4_stats/effect_sizes": "done",
+      "s4_stats/permutation_inference": "done",
+      "s4_stats/cost_sensitivity": "done"
+    },
+    "s5_baselines": {
+      "s5_baselines/main_table": "done",
+      "s5_baselines/learning_curve": "done",
+      "s5_baselines/field_ladder": "done",
+      "s5_baselines/baf_transfer": "done"
+    },
+    "s6_drift": {
+      "s6_drift/ieee_temporal": "done",
+      "s6_drift/baf_monthly": "done",
+      "s6_drift/fairness": "done",
+      "s6_drift/error_stratification": "done"
+    },
+    "s8_llm": {
+      "s8_llm/zero_shot_0_5b": "done",
+      "s8_llm/lora_sft_0_5b": "done",
+      "s5_baselines/llm_scale_scan": "done"
+    },
+    "s7_figures": {
+      "s7_figures/plots": "done"
+    }
+  },
+  "errors": {},
+  "blocked_units": {
+    "s3_protocol/tee_attestation": {
+      "reason": "this host exposes no SGX/SEV-SNP/TDX device and no remote attestation service; a TEE-based verifiable-inference claim cannot be measured here and is NOT estimated",
+      "resume_cmd": "deploy on a confidential-computing VM (e.g. Azure DCsv3 / GCP Confidential VM) then run python -m experiments.optional_scans tee"
+    }
+  },
+  "summary": {
+    "run_id": "run_20261116_094330",
+    "counts": {
+      "done": 35,
+      "blocked": 1
+    },
+    "interruptions": 0,
+    "total_units": 36
+  },
+  "honesty": {
+    "mock_results_used_in_manuscript": false,
+    "example_data_used": false,
+    "cross_family_review": false,
+    "note": "All reported numbers come from results/<run_id>/*.json. Blocked units are NOT filled with estimates."
+  }
+}

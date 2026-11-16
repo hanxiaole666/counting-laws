@@ -1,0 +1,140 @@
+\section{Related work}\label{sec:related}
+
+\subsection{Efficient and sparse attention}
+
+The literature on cheaper attention is organised by pattern
+\cite{tay2022efficient}: windowed attention, global tokens
+\cite{beltagy2020longformer,zaheer2020bigbird}, low-rank and kernel
+approximations, and learned selection \cite{zhou2021informer}. The usual
+argument is a complexity statement at the level of the score matrix. Longformer
+combines a sliding window with a small task-specific set of global tokens and
+argues linear cost in $n$; Big Bird adds random links and proves that the
+resulting pattern retains the expressive power of full attention, again with a
+number of global tokens that does not grow with the sequence. Informer selects a
+fixed number of queries and keys per step, so its budget per query is constant
+in $n$. These analyses are correct for the designs they describe.
+
+What is missing is a statement that separates the designs. ``Sparse'' is used
+for patterns whose global-key budget is constant and for patterns whose budget
+grows with $n$, and the two have different complexity classes with the same
+name. Section~\ref{sec:theory} supplies the missing parameter and shows that it
+is the budget, not the pattern, that determines the class. A second gap is the
+distance between the mask and the kernel: complexity is stated for the set of
+attended entries, whereas hardware executes tiles. The gap is not a detail; at
+the settings we measure it changes the executed density by up to a factor
+\BlockInflationGranMax (Section~\ref{sec:granularity}).
+
+The strongest dense baseline is also not the one usually reported. IO-aware
+exact attention \cite{dao2022flashattention} avoids materialising the score
+matrix, so comparisons against a naive dense implementation overstate the saving
+of a sparse pattern by the whole memory of that matrix. We therefore report both
+dense baselines and treat the fused kernel as the primary competitor
+(Section~\ref{sec:device}). The same reasoning applies to the
+memory-minimal-but-launch-heavy variant of our own sparse kernel, which we
+measure separately rather than choosing whichever is convenient.
+
+\subsection{Attention as an object of analysis}
+
+A complementary line studies attention as a computational primitive with its own
+capacity and structure, for instance the analysis of attention building blocks
+as associative memories with measurable storage limits
+\cite{baldi2023quarks}. That work asks what a given number of heads and
+dimensions can represent. We ask the dual question of what a given mask costs to
+execute, and we connect the two through a retained-mass bound
+(Theorem~\ref{thm:mass}): the price of a cheaper mask is stated in the same
+currency, namely the probability mass it keeps, as the capacity question. The two
+answers are not substitutes; a pattern can be expressive and unaffordable, or
+cheap and lossy, and a design decision needs both numbers.
+
+\subsection{Cost-sensitive learning and tabular decisions}
+
+Threshold choice under asymmetric costs is classical
+\cite{elkan2001foundations}: for known costs the optimal decision is a
+likelihood-ratio threshold, and in practice the threshold is estimated on
+validation data. We adopt that framework unchanged and use it as the evaluation
+lens, because it is the only lens under which an efficiency question is a
+decision question. Our contribution here is not a new cost-sensitive rule but
+the observation that a substitution which improves a ranking metric can still
+raise \eqref{eq:cost}, and that the two must be reported together.
+
+On the modelling side, gradient-boosted trees remain the strongest family on
+medium-sized tabular problems \cite{chen2016xgboost,ke2017lightgbm}, and careful
+benchmarks show that the advantage survives modern architectures and tuning
+\cite{gorishniy2021revisiting,grinsztajn2022why}. Our results are consistent
+with that literature and extend it in a specific direction: we ask whether a
+\emph{pretrained} model, adapted with a modern parameter-efficient method, closes
+the gap when supervision is scarce, and we separate the two things adaptation can
+repair: the output interface and the decision boundary.
+
+\subsection{Language models on structured and tabular data}
+
+Serialising a row as text and prompting a language model is now a standard
+few-shot baseline for tabular classification \cite{hegselmann2023tabllm}. Two
+measurement problems recur in that literature and we address both. First, a
+generated answer must be parsed, and parse failures are frequently imputed
+rather than counted, which manufactures discrimination from a constant. We count
+them, and we show that a parse-free logit interface removes the failure mode at a
+fraction of the cost. Second, adaptation and discrimination are usually reported
+as one number; we report them as two, because they move in opposite directions in
+our experiment.
+
+\subsection{Verifiability and the operational context}
+
+The system that motivated this study also had to convince an auditor that the
+score it received was the score a committed model produced. Hardware-rooted
+attestation \cite{costan2016sgx} and proof-of-learning
+\cite{jia2021proof} are the two standard answers. Neither is measurable on our
+device, so we report the commitment-and-challenge protocol we \emph{can} measure
+and mark the rest as blocked (Section~\ref{sec:system}). We mention the
+operational literature on hidden debt in learned systems \cite{sculley2015hidden}
+because it explains why the defaults we study are attractive: each removes a
+component that is hard to operate, and the cost of the removal is paid later and
+elsewhere.
+
+\subsection{Reproducibility as a design constraint}
+
+Reported empirical AI results are unevenly reproducible, and structured
+programmes improve this measurably \cite{pineau2021improving}. We take the
+stronger position that a result which cannot refute its own author is not yet a
+result, and we build the apparatus accordingly: claims carry status, refuted
+hypotheses are recorded as refuted rather than deleted, and blocked measurements
+carry the command that would unblock them. Section~\ref{sec:audit} describes the
+mechanism and Section~\ref{sec:attn_withdraw} shows it firing on our own work.
+
+\subsection{The closest prior work, and how this paper differs}
+
+The three works closest to ours are the survey of efficient transformers
+\cite{tay2022efficient}, the Big Bird analysis of sparse attention with global
+tokens \cite{zaheer2020bigbird}, and the cost-sensitive learning framework of
+\cite{elkan2001foundations}.
+
+Relative to \cite{tay2022efficient}: that survey provides the taxonomy we use and
+states complexity per pattern, at the level of attended entries and for the
+designs as published. We add the parameter the taxonomy does not record, the
+number of keys visible to every query as a function of $n$, and show that it
+decides the complexity class, not the name of the pattern; we then measure
+the executed rather than the nominal cost, which introduces a second factor, the
+block-granularity inflation of Proposition~\ref{prop:block}.
+
+Relative to \cite{zaheer2020bigbird}: that paper establishes that a combination
+of window, global and random links preserves expressive power at linear cost, and
+its global set is of fixed size. Our result is the complement: keeping the
+window and the sinks but replacing the fixed global set with a \emph{periodic}
+one, a natural choice when no task-specific global set is known, moves the
+pattern out of the linear class, and we quantify the price on a real device. The
+two results are consistent; together they say that the choice of how a position
+becomes globally visible is a complexity decision, not a stylistic one.
+
+Relative to \cite{elkan2001foundations}: the cost-sensitive framework is used
+unchanged. What is new is the object it is applied to: we ask whether a
+pretrained language model can replace the scorer under that criterion when
+supervision is scarce, and we answer with a dissociation between interface
+repair and discrimination loss that the framework alone does not predict.
+
+Finally, relative to the tabular benchmarking literature
+\cite{gorishniy2021revisiting,grinsztajn2022why}, our setting differs in the
+budget rather than in the model zoo: we deliberately weaken the supervised
+baseline (a fixed feature and row budget) so that the comparison favours the
+pretrained model, and the gap nevertheless remains an order of magnitude in
+AUC-PR. That is the sense in which we read our result as a supervision bound
+rather than as another entry in a leaderboard.

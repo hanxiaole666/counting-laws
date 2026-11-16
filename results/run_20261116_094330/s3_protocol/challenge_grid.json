@@ -1,0 +1,309 @@
+{
+  "stage": "s3_protocol",
+  "unit": "challenge_grid",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:22Z",
+  "suite_version": "1.0.0",
+  "rows": [
+    {
+      "N": 1000,
+      "f": 0.01,
+      "q": 0.01,
+      "n_cheaters": 10,
+      "n_challenged": 10,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.8966666666666666,
+      "ci95": [
+        0.8570590047878968,
+        0.9262438740805661
+      ],
+      "theory_simple_bound": 0.9043820750088044,
+      "theory_hypergeometric": 0.9039684513598873,
+      "detection_rate": 0.10333333333333339,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.01,
+      "q": 0.05,
+      "n_cheaters": 10,
+      "n_challenged": 50,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.6466666666666666,
+      "ci95": [
+        0.5910319849316535,
+        0.6985926089356772
+      ],
+      "theory_simple_bound": 0.6050060671375364,
+      "theory_hypergeometric": 0.5973112929066539,
+      "detection_rate": 0.3533333333333334,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.01,
+      "q": 0.1,
+      "n_cheaters": 10,
+      "n_challenged": 100,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.38333333333333336,
+      "ci95": [
+        0.33011889302772734,
+        0.43949790730507765
+      ],
+      "theory_simple_bound": 0.3660323412732292,
+      "theory_hypergeometric": 0.34692771479200546,
+      "detection_rate": 0.6166666666666667,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.01,
+      "q": 0.25,
+      "n_cheaters": 10,
+      "n_challenged": 250,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.03333333333333333,
+      "ci95": [
+        0.018204749873650852,
+        0.0602624514575691
+      ],
+      "theory_simple_bound": 0.08105851616218128,
+      "theory_hypergeometric": 0.0554689157775411,
+      "detection_rate": 0.9666666666666667,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.05,
+      "q": 0.01,
+      "n_cheaters": 50,
+      "n_challenged": 10,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.6266666666666667,
+      "ci95": [
+        0.5706540867432932,
+        0.6794762443239473
+      ],
+      "theory_simple_bound": 0.5987369392383787,
+      "theory_hypergeometric": 0.5973112929066539,
+      "detection_rate": 0.3733333333333333,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.05,
+      "q": 0.05,
+      "n_cheaters": 50,
+      "n_challenged": 50,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.08333333333333333,
+      "ci95": [
+        0.05708047735632001,
+        0.12012238097512637
+      ],
+      "theory_simple_bound": 0.07694497527671315,
+      "theory_hypergeometric": 0.07197699188484277,
+      "detection_rate": 0.9166666666666666,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.05,
+      "q": 0.1,
+      "n_cheaters": 50,
+      "n_challenged": 100,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.013333333333333334,
+      "ci95": [
+        0.005196877684679467,
+        0.03377606084644991
+      ],
+      "theory_simple_bound": 0.0059205292203339975,
+      "theory_hypergeometric": 0.00447579097788607,
+      "detection_rate": 0.9866666666666667,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.05,
+      "q": 0.25,
+      "n_cheaters": 50,
+      "n_challenged": 250,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.0,
+      "ci95": [
+        0.0,
+        0.012643429997735661
+      ],
+      "theory_simple_bound": 2.6971265378990014e-06,
+      "theory_hypergeometric": 3.703278983932787e-07,
+      "detection_rate": 1.0,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.1,
+      "q": 0.01,
+      "n_cheaters": 100,
+      "n_challenged": 10,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.38333333333333336,
+      "ci95": [
+        0.33011889302772734,
+        0.43949790730507765
+      ],
+      "theory_simple_bound": 0.3486784401000001,
+      "theory_hypergeometric": 0.34692771479200546,
+      "detection_rate": 0.6166666666666667,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.1,
+      "q": 0.05,
+      "n_cheaters": 100,
+      "n_challenged": 50,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.0033333333333333335,
+      "ci95": [
+        0.0005886425761407379,
+        0.018637164554943353
+      ],
+      "theory_simple_bound": 0.00515377520732012,
+      "theory_hypergeometric": 0.00447579097788607,
+      "detection_rate": 0.9966666666666667,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.1,
+      "q": 0.1,
+      "n_cheaters": 100,
+      "n_challenged": 100,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.0,
+      "ci95": [
+        0.0,
+        0.012643429997735661
+      ],
+      "theory_simple_bound": 2.6561398887587544e-05,
+      "theory_hypergeometric": 1.4696838026802208e-05,
+      "detection_rate": 1.0,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.1,
+      "q": 0.25,
+      "n_cheaters": 100,
+      "n_challenged": 250,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.0,
+      "ci95": [
+        0.0,
+        0.012643429997735661
+      ],
+      "theory_simple_bound": 3.636029179587016e-12,
+      "theory_hypergeometric": 5.354464293688361e-14,
+      "detection_rate": 1.0,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.2,
+      "q": 0.01,
+      "n_cheaters": 200,
+      "n_challenged": 10,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.11333333333333333,
+      "ci95": [
+        0.082244014467736,
+        0.15420023806384625
+      ],
+      "theory_simple_bound": 0.10737418240000006,
+      "theory_hypergeometric": 0.10616441322995898,
+      "detection_rate": 0.8866666666666667,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.2,
+      "q": 0.05,
+      "n_cheaters": 200,
+      "n_challenged": 50,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.0,
+      "ci95": [
+        0.0,
+        0.012643429997735661
+      ],
+      "theory_simple_bound": 1.4272476927059638e-05,
+      "theory_hypergeometric": 1.0383460795658304e-05,
+      "detection_rate": 1.0,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.2,
+      "q": 0.1,
+      "n_cheaters": 200,
+      "n_challenged": 100,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.0,
+      "ci95": [
+        0.0,
+        0.012643429997735661
+      ],
+      "theory_simple_bound": 2.0370359763344975e-10,
+      "theory_hypergeometric": 5.342381105141658e-11,
+      "detection_rate": 1.0,
+      "empirical_matches_simple_bound": true
+    },
+    {
+      "N": 1000,
+      "f": 0.2,
+      "q": 0.25,
+      "n_cheaters": 200,
+      "n_challenged": 250,
+      "trials": 300,
+      "predictable_randomness": false,
+      "empirical_escape": 0.0,
+      "ci95": [
+        0.0,
+        0.012643429997735661
+      ],
+      "theory_simple_bound": 5.922386521532938e-25,
+      "theory_hypergeometric": 3.8667286520190116e-29,
+      "detection_rate": 1.0,
+      "empirical_matches_simple_bound": true
+    }
+  ],
+  "required_q_for_delta_0.01": {
+    "0.01": 0.46051701859880917,
+    "0.05": 0.09210340371976183,
+    "0.1": 0.04605170185988092,
+    "0.2": 0.02302585092994046
+  },
+  "theorem": "Pr[escape] = C(N-m, k)/C(N, k) <= (1-f)^{qN}",
+  "assertions": {
+    "monotone_in_q": true
+  }
+}

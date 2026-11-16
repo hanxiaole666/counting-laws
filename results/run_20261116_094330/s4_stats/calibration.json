@@ -1,0 +1,89 @@
+{
+  "stage": "s4_stats",
+  "unit": "calibration",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:50Z",
+  "suite_version": "1.0.0",
+  "score_type": "continuous predict_proba (not a hardcoded constant)",
+  "calibration_method": "Platt / logistic on logit, fitted on validation",
+  "n_distinct_test_scores": 27581,
+  "brier_raw": 0.024418434259236486,
+  "brier_calibrated": 0.02450458553963596,
+  "ece_raw": 0.0013149099270123186,
+  "ece_calibrated": 0.003309316248411926,
+  "calibration_bins": [
+    {
+      "bin": 0,
+      "n": 28048,
+      "accuracy": 0.01654306902452938,
+      "mean_confidence": 0.018199616008206385
+    },
+    {
+      "bin": 1,
+      "n": 992,
+      "accuracy": 0.13911290322580644,
+      "mean_confidence": 0.13736091207657777
+    },
+    {
+      "bin": 2,
+      "n": 315,
+      "accuracy": 0.19047619047619047,
+      "mean_confidence": 0.24383952658833874
+    },
+    {
+      "bin": 3,
+      "n": 159,
+      "accuracy": 0.3018867924528302,
+      "mean_confidence": 0.3457506089582177
+    },
+    {
+      "bin": 4,
+      "n": 79,
+      "accuracy": 0.4050632911392405,
+      "mean_confidence": 0.45075049095665615
+    },
+    {
+      "bin": 5,
+      "n": 61,
+      "accuracy": 0.4426229508196721,
+      "mean_confidence": 0.5489828039225628
+    },
+    {
+      "bin": 6,
+      "n": 29,
+      "accuracy": 0.6206896551724138,
+      "mean_confidence": 0.6477716522142253
+    },
+    {
+      "bin": 7,
+      "n": 45,
+      "accuracy": 0.7555555555555555,
+      "mean_confidence": 0.7533696741925613
+    },
+    {
+      "bin": 8,
+      "n": 72,
+      "accuracy": 0.8194444444444444,
+      "mean_confidence": 0.8562842755215403
+    },
+    {
+      "bin": 9,
+      "n": 200,
+      "accuracy": 0.88,
+      "mean_confidence": 0.948307172482583
+    }
+  ],
+  "generative_parse_failure_rate": null,
+  "parse_failure_note": "no generative LLM output exists in this CPU suite; parse-failure counting is N/A, not silently reported as 0",
+  "claims": {
+    "platt_reduces_brier": false
+  },
+  "assertions": {
+    "scores_are_continuous": true,
+    "calibration_changes_scores": true,
+    "brier_is_finite": true,
+    "calibration_fitted_on_val_only": true
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "stage": "s6_drift",
+  "unit": "ieee_temporal",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:46:03Z",
+  "suite_version": "1.0.0",
+  "dataset": "ieee_cis",
+  "slices": [
+    {
+      "slice": 0,
+      "ts_lo": 13151880.0,
+      "ts_hi": 13543136.833333334,
+      "n": 5000,
+      "fraud_rate": 0.0318,
+      "auc_pr": 0.4792392247894387,
+      "recall_at_fpr_1pct": 0.3836477987421384
+    },
+    {
+      "slice": 1,
+      "ts_lo": 13543136.833333334,
+      "ts_hi": 13992325.666666666,
+      "n": 5000,
+      "fraud_rate": 0.0306,
+      "auc_pr": 0.3537364240661665,
+      "recall_at_fpr_1pct": 0.35947712418300654
+    },
+    {
+      "slice": 2,
+      "ts_lo": 13992325.666666666,
+      "ts_hi": 14420040.0,
+      "n": 5000,
+      "fraud_rate": 0.0326,
+      "auc_pr": 0.36680197806115217,
+      "recall_at_fpr_1pct": 0.32515337423312884
+    },
+    {
+      "slice": 3,
+      "ts_lo": 14420040.0,
+      "ts_hi": 14858216.666666666,
+      "n": 5000,
+      "fraud_rate": 0.0384,
+      "auc_pr": 0.48468077589388975,
+      "recall_at_fpr_1pct": 0.375
+    },
+    {
+      "slice": 4,
+      "ts_lo": 14858216.666666666,
+      "ts_hi": 15290927.5,
+      "n": 5000,
+      "fraud_rate": 0.0356,
+      "auc_pr": 0.5520675163648485,
+      "recall_at_fpr_1pct": 0.449438202247191
+    },
+    {
+      "slice": 5,
+      "ts_lo": 15290927.5,
+      "ts_hi": 15811131.0,
+      "n": 5000,
+      "fraud_rate": 0.0422,
+      "auc_pr": 0.471149122251134,
+      "recall_at_fpr_1pct": 0.3744075829383886
+    }
+  ],
+  "slice_mode": "quantile slices",
+  "n_unique_ts": 29782,
+  "auc_pr_first_to_last_delta": -0.008090102538304722,
+  "note": "temporal slices within the held-out test period; delta is None when fewer than two evaluable slices exist",
+  "assertions": {
+    "enough_slices": true
+  }
+}

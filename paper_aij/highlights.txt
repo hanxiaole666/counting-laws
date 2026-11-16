@@ -1,0 +1,25 @@
+Highlights for "Two counting laws for cost-sensitive decision systems:
+anchor-based sparse attention is quadratic, and small language models are
+supervision-bound"
+
+Artificial Intelligence (Elsevier), submission by Xiaole Han.
+
+Elsevier requires 3-5 bullet points, each at most 85 characters including
+spaces. The five bullets are listed one per line, nothing else, between the
+two markers below -- copy that block verbatim into the submission form and
+into the separate file (e.g. highlights.txt) that is uploaded as item type
+"Highlights". Every figure quoted here is regenerated at build time from
+results/run_20261116_094330 and is printed with the same value in the body:
+  n=32768 anchor vs fused kernel ... 669x memory, 9.0x latency (Sec. 6.2)
+  executed vs advertised density ..... 18.6x..98.4x (Sec. 6.3)
+  logit vs JSON interface ........... 22.2x latency (Sec. 7.1)
+  AUC-PR 0.5B model vs GBDT ......... 0.0767 vs 0.5295 (Sec. 7.2)
+  AUC-ROC after LoRA ................ 0.6412 -> 0.4582 (Sec. 7.3)
+
+--- BEGIN HIGHLIGHTS ---
+The global-key budget, not sparsity, decides whether attention is linear in n.
+Periodic anchors use 669x the memory of a fused kernel at n=32768 on 6 GiB.
+Block kernels run min(1,B/g) density, inflating advertised sparsity up to 98x.
+A yes/no logit interface costs 22x less than parsed JSON and cannot fail.
+LoRA on 900 rows fixes the output format and pushes AUC-ROC 0.64 to chance.
+--- END HIGHLIGHTS ---

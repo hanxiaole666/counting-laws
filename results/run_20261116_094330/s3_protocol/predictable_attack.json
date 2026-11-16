@@ -1,0 +1,49 @@
+{
+  "stage": "s3_protocol",
+  "unit": "predictable_attack",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:22Z",
+  "suite_version": "1.0.0",
+  "unpredictable": {
+    "N": 1000,
+    "f": 0.05,
+    "q": 0.1,
+    "n_cheaters": 50,
+    "n_challenged": 100,
+    "trials": 300,
+    "predictable_randomness": false,
+    "empirical_escape": 0.0,
+    "ci95": [
+      0.0,
+      0.012643429997735661
+    ],
+    "theory_simple_bound": 0.0059205292203339975,
+    "theory_hypergeometric": 0.00447579097788607,
+    "detection_rate": 1.0,
+    "empirical_matches_simple_bound": true
+  },
+  "predictable": {
+    "N": 1000,
+    "f": 0.05,
+    "q": 0.1,
+    "n_cheaters": 50,
+    "n_challenged": 100,
+    "trials": 300,
+    "predictable_randomness": true,
+    "empirical_escape": 1.0,
+    "ci95": [
+      0.9873565700022643,
+      0.9999999999999999
+    ],
+    "theory_simple_bound": 0.0059205292203339975,
+    "theory_hypergeometric": 0.00447579097788607,
+    "detection_rate": 0.0,
+    "empirical_matches_simple_bound": false
+  },
+  "negative_result": "detection collapses when the adversary can predict the challenge set",
+  "assertions": {
+    "attack_collapses_detection": true
+  }
+}

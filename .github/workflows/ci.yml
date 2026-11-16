@@ -1,0 +1,98 @@
+name: checks
+
+# Two kinds of job, on purpose:
+#   checks    — everything that must hold on every commit and needs no dataset,
+#               no GPU and no LaTeX. Fast, deterministic, fails loudly.
+#   reproduce — the full suite. Downloads 128 MB of data and ~4 GB of model
+#               weights, so it runs on demand rather than on every push.
+#   paper     — rebuilds main.pdf from the stored results.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the CPU dependency set
+        run: pip install -r requirements.lock
+
+      - name: Tests
+        run: python -m pytest tests -q
+
+      - name: Every paper number still traces to a result file
+        run: python tools/trace.py --check
+
+      - name: The traced numbers still agree with an independent derivation
+        run: python paper_aij/check_numbers.py
+
+      - name: The README's quoted measurements are what the code prints
+        run: python tools/refresh_readme.py --check
+
+      - name: The reader's instrument reproduces the reference count
+        run: python tools/countlaws.py --n 4096 --w 64 --g 96 --s 4
+
+  reproduce:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the full dependency set
+        run: pip install -r requirements.lock -r requirements-gpu.lock
+
+      - name: Datasets (idempotent, sha256-verified, never redistributed)
+        run: python -m experiments.data_io --ensure --datasets ieee_cis,baf --status
+
+      - name: Full suite (a unit that needs absent hardware fails fast)
+        run: python -m experiments.run_all --fresh
+
+      - name: Result files, figures and hashes
+        run: python -m experiments.verify_artifacts
+
+      - name: Numbers and tables from the fresh run
+        run: |
+          python paper_aij/build_assets.py
+          python paper_aij/check_numbers.py
+          python paper_aij/make_figs.py
+
+  paper:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: TeX Live (elsarticle, orcidlink)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq texlive-latex-base texlive-latex-recommended \
+            texlive-publishers texlive-science texlive-fonts-recommended
+
+      - name: Build the manuscript from the stored results
+        run: |
+          cd paper_aij
+          pdflatex -interaction=nonstopmode main
+          bibtex main
+          pdflatex -interaction=nonstopmode main
+          pdflatex -interaction=nonstopmode main
+          ! grep -q "LaTeX Warning: Reference" main.log
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: main-pdf
+          path: paper_aij/main.pdf

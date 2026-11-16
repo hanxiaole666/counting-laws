@@ -1,0 +1,32 @@
+{
+  "stage": "s5_baselines",
+  "unit": "baf_transfer",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:46:01Z",
+  "suite_version": "1.0.0",
+  "dataset": "baf",
+  "n_features": 25,
+  "metrics": {
+    "auc_pr": 0.14819273284887355,
+    "auc_roc": 0.8548747986945431,
+    "recall_at_fpr_1pct": 0.18421052631578946,
+    "achieved_fpr": 0.01012049823991335,
+    "threshold": 0.10289398570600701,
+    "precision": 0.2682926829268293,
+    "recall": 0.14473684210526316,
+    "f1": 0.18803418803418803,
+    "tp": 66,
+    "fp": 180,
+    "fn": 390,
+    "tn": 29364,
+    "expected_loss": 4080.0,
+    "c_fn": 10.0,
+    "c_fp": 1.0
+  },
+  "note": "second dataset, source-declared synthetic, month-based drift",
+  "assertions": {
+    "baf_evaluated": true
+  }
+}

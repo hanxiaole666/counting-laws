@@ -1,0 +1,99 @@
+\section{Setting, notation and data}\label{sec:setting}
+
+\subsection{The decision problem}
+
+An operator scores a stream of events $x_1,x_2,\dots$ arriving in temporal
+order. A model $f$ maps an event to $p(x)\in[0,1]$, and a threshold $\tau$ maps
+the score to an action $a\in\{0,1\}$. Errors are asymmetric: a false negative
+costs $c_{\mathrm{FN}}$, a false positive costs $c_{\mathrm{FP}}$. The quantity
+we optimise is the expected cost per event,
+\begin{equation}
+C(\tau) \;=\; c_{\mathrm{FN}}\,\pi\,\big(1-\mathrm{TPR}(\tau)\big)
+\;+\; c_{\mathrm{FP}}\,(1-\pi)\,\mathrm{FPR}(\tau),
+\label{eq:cost}
+\end{equation}
+with $\pi$ the base rate. Two consequences shape every experiment below.
+First, the operating point matters more than the ranking: a model with a better
+AUC-PR can be worse in \eqref{eq:cost} at the deployed threshold. Second, the
+threshold must be chosen without looking at the test period, so we choose $\tau$
+once on a validation split for each cost ratio and evaluate once on test.
+Throughout, AUC-PR is the primary ranking metric because the positive class is
+rare ($\pi\approx\BafFraudPct\%$ on \DatasetBaf), AUC-ROC is secondary, and we
+report Recall at a fixed $1\%$ false-positive rate as the auditable operating
+point, following \cite{elkan2001foundations}.
+
+\subsection{The mask family}\label{sec:family}
+
+Let $i$ index queries and $j$ keys, both in $\{0,\dots,n-1\}$. The family we
+analyse is
+\begin{equation}
+\Sset(i) \;=\; \underbrace{\{j : i-w < j \le i\}}_{\text{window}}
+\;\cup\; \underbrace{\{j : j \le i,\ j \bmod g = 0\}}_{\text{periodic anchors}}
+\;\cup\; \underbrace{\{j : j < s\}}_{\text{sinks}},
+\label{eq:mask}
+\end{equation}
+with every set intersected with the causal constraint $j\le i$. The three
+parameters specialise to the designs in use:
+
+\begin{itemize}
+\item $g=\infty$, $s=0$: a pure sliding window. Global-key budget zero.
+\item $g=\infty$, $s>0$: a window plus a fixed number of sink positions; this
+is the mechanism by which a fixed set of global tokens is usually implemented.
+\item $g$ fixed and finite: periodic anchoring, i.e. every $g$-th position is
+visible to all later queries. This is the design we analyse and measure; it is
+the natural way to guarantee that no position is more than $g$ steps from a
+globally visible key, and it appears whenever a system wants coverage rather
+than a hand-chosen global set.
+\item $w=n$, $g=\infty$: dense causal attention, the reference.
+\end{itemize}
+
+The distinction between the second and third items is the subject of
+Theorem~\ref{thm:linear}: both are described as ``global attention'', but the
+second has a constant number of global keys and the third has $n/g$ of them.
+
+\subsection{Data}
+
+We use two public benchmarks, both with source-provided temporal splits, and we
+never shuffle across time.
+
+\DatasetIeee{} \cite{ieeecis2019} contains \IeeeRows{} card transactions with
+\IeeeCols{} columns and a fraud rate of \IeeeFraudPct\%. The source provides
+strict temporal partitions of \TrainRows{}, \ValRows{} and \TestRows{} rows. The
+mirror we use is checksummed against the published dataset-card hash (first
+sixteen hex digits \IeeeSha) before any experiment runs.
+
+\DatasetBaf{} \cite{jesus2022turning} contains \BafRows{} account-opening
+records with \BafCols{} columns and a rate of \BafFraudPct\%. It is
+source-declared synthetic, which we treat as a limitation rather than a
+convenience: it is the second dataset, never the primary one.
+
+\paragraph{Entity sequences} A decision is often better made about a card than
+about a single transaction. Grouping the mirror by \texttt{card1} and ordering by
+timestamp yields \NEtities{} entities whose length distribution is heavy-tailed:
+median \MedianLen, 90th percentile \PninetyLen, 99th percentile
+\PninetyNineLen, maximum \MaxLen, with \EntGteThousand{} entities reaching
+$n\ge 1024$. This distribution is itself a result and it constrains the
+attention question: long-context machinery matters for a thin tail of entities,
+not for the median one. We therefore report the attention measurements on
+synthetic sequences of controlled length and use the real sequences only for the
+autocorrelation analysis of Section~\ref{sec:acf} and the retained-mass check of
+Section~\ref{sec:mass}.
+
+\paragraph{Feature budget} To keep the comparison honest across model families
+we fix a budget of \MainFeatures{} numeric predictors, \MainTrainRows{} training
+rows and \MainTestRows{} held-out rows, with the operating point chosen on
+validation. Limiting the budget below the data's capacity is deliberate: it
+makes the supervised baselines weaker than they could be, which biases the
+comparison \emph{in favour} of the pretrained model, and is therefore the
+conservative direction for claim C5.
+
+\subsection{Hardware and software}
+
+All device measurements come from one \GpuName{} with \GpuMemGiB\,GiB of memory
+and compute capability \GpuCapability, using PyTorch \TorchVer{} built against
+CUDA \CudaVer, float16 activations, block size $B=\GpuBlock$, window
+$w=\GpuW$ and anchor period $g=\GpuG$, with \GpuReps{} timed repetitions per
+cell after warm-up. Tabular models and the statistical layer run on the host
+CPU; the on-chain cost measurement runs on a local EVM (\SolcVer) with no
+network. We report single-device numbers because the deployment target is a
+single device, and we say so in every caption where it matters.

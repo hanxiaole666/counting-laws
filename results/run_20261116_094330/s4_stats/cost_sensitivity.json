@@ -1,0 +1,73 @@
+{
+  "stage": "s4_stats",
+  "unit": "cost_sensitivity",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:45:37Z",
+  "suite_version": "1.0.0",
+  "rows": [
+    {
+      "cost_ratio_fn_fp": 1,
+      "threshold_from_validation": 0.3058050364629088,
+      "test_cost_per_tx": 0.0292,
+      "test_recall": 0.3352112676056338,
+      "test_fpr": 0.005806117159149819,
+      "validation_cost_per_tx": 0.02711642451541527
+    },
+    {
+      "cost_ratio_fn_fp": 2,
+      "threshold_from_validation": 0.2322389812681325,
+      "test_cost_per_tx": 0.05275,
+      "test_recall": 0.38309859154929576,
+      "test_fpr": 0.009279419388284084,
+      "validation_cost_per_tx": 0.04941240220814847
+    },
+    {
+      "cost_ratio_fn_fp": 5,
+      "threshold_from_validation": 0.15314905959119063,
+      "test_cost_per_tx": 0.1208,
+      "test_recall": 0.4253521126760563,
+      "test_fpr": 0.01949196474857439,
+      "validation_cost_per_tx": 0.10932366986148272
+    },
+    {
+      "cost_ratio_fn_fp": 10,
+      "threshold_from_validation": 0.0799862801812436,
+      "test_cost_per_tx": 0.21235,
+      "test_recall": 0.5450704225352113,
+      "test_fpr": 0.05272161741835148,
+      "validation_cost_per_tx": 0.1937435793228796
+    },
+    {
+      "cost_ratio_fn_fp": 20,
+      "threshold_from_validation": 0.036969557829810755,
+      "test_cost_per_tx": 0.3803,
+      "test_recall": 0.6788732394366197,
+      "test_fpr": 0.15790565059616382,
+      "validation_cost_per_tx": 0.32072340569648117
+    },
+    {
+      "cost_ratio_fn_fp": 50,
+      "threshold_from_validation": 0.01947473411799275,
+      "test_cost_per_tx": 0.64035,
+      "test_recall": 0.7943661971830986,
+      "test_fpr": 0.2854847071021255,
+      "validation_cost_per_tx": 0.556033460900193
+    },
+    {
+      "cost_ratio_fn_fp": 100,
+      "threshold_from_validation": 0.009627682355984171,
+      "test_cost_per_tx": 0.7917,
+      "test_recall": 0.9225352112676056,
+      "test_fpr": 0.535717988595127,
+      "validation_cost_per_tx": 0.7516171639516375
+    }
+  ],
+  "n_test": 20000,
+  "protocol": "threshold per cost ratio chosen on VALIDATION, evaluated on TEST",
+  "assertions": {
+    "all_ratios_reported": true,
+    "cost_finite": true
+  }
+}

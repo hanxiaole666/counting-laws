@@ -1,0 +1,66 @@
+# =====================================================================
+# EdgeTrust-FinRisk 全局配置（所有超参集中于此，脚本内禁止硬编码）
+# 适配硬件：i7-9750H / RTX 2060 6GB / 16GB RAM
+# =====================================================================
+
+project:
+  name: edge-trusted-fintrisk
+  output_dir: results
+  figure_dir: figures
+  seeds: [42, 43, 44, 45, 46]        # E6 统计显著性：5 种子
+
+data:
+  raw_dir: data/raw/ieee-fraud-detection   # Kaggle IEEE-CIS 解压目录
+  processed_dir: data/processed
+  synthetic: false               # true 时生成合成数据跑通流程（论文须用真实数据）
+  synthetic_n: 20000
+  fraud_ratio: 0.035             # 与 IEEE-CIS 真实欺诈率对齐
+  train_ratio: 0.70              # 时间序划分，禁止随机划分
+  val_ratio: 0.15
+  max_features_for_text: 20      # GBL 叙事保留的关键字段数
+
+model:
+  base_model: Qwen/Qwen2.5-3B-Instruct
+  fallback_model: Qwen/Qwen2.5-1.5B-Instruct   # 显存不足时降级
+  load_in_4bit: true             # Int4 量化，显存约 2.5GB
+  max_seq_length: 1024
+  temperature: 0.1               # 风控要求稳定输出
+  max_new_tokens: 64
+  attention: pswa                # pswa=周期滑窗稀疏注意力 | full=全量注意力（消融用）
+  pswa_window: 512               # 局部窗口
+  pswa_global_period: 96         # 周期全局锚点间隔（对齐交易日周期）
+
+lora:
+  enabled: true                  # false 时为零样本消融（w/o LoRA）
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+train:
+  epochs: 2
+  per_device_batch_size: 1       # 2060 6GB 安全值
+  grad_accumulation: 8           # 等效 batch=8
+  learning_rate: 0.0002
+  warmup_ratio: 0.03
+  fp16: true                     # Turing 不支持 bf16
+  balanced_sampling: true        # 类别不平衡：平衡采样
+  early_stop_metric: val_auc_pr
+  adapter_out: outputs/lora_adapter
+
+eval:
+  batch_size: 8
+  latency_warmup: 20             # 前 20 笔不计入延迟统计
+  bootstrap_n: 1000              # 95% CI 重采样次数
+  threshold_search: true         # 在验证集按最优 F1 选阈值
+  n_stress_tx: 1000              # E4 压测交易数
+  mock: false                    # true=无 GPU 跑通流程（仅供工程验证）
+
+chain:
+  mode: sim                      # sim=内置模拟链（任何机器可跑）| web3=Hardhat 本地节点
+  web3_rpc: http://127.0.0.1:8545
+  hash_algo: sha256              # 承诺哈希（可换 keccak256，需 eth-hash）
+  merkle_batch: 64               # 每 64 条承诺聚合一个 Merkle 根上链
+  tamper_ratios: [0.001, 0.01, 0.05, 0.10]   # E5 篡改比例扫描
+  gas_price_gwei: 20
+  eth_price_usd: 3000            # 成本估算用，写作时按市价更新

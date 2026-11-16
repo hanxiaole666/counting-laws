@@ -1,0 +1,44 @@
+# Datasets are never committed (see NOTICE); they are downloaded and verified.
+# Anchored to the root on purpose: results/<run>/data/ holds the dataset *schema*
+# JSON (row counts, split sizes, sha256) and the manuscript reads those.
+/data/
+*.parquet
+*.part
+
+# Generated artifacts (regenerate with `python -m experiments.run_all --fresh`).
+# The one run the manuscript is built from stays tracked: it is the evidence a
+# reviewer needs to rebuild the PDF offline.
+/results/*
+!/results/run_20261116_094330/
+/figures/*.png
+/ARTIFACT_VERIFY.json
+/RUN_METADATA.json
+/ARTIFACT_CHAIN.json
+/paper/TABLES.md
+/paper/MANUSCRIPT.md
+/paper/BLOCKED.md
+/paper/FIGURE_LEGEND.md
+
+# LaTeX intermediates. main.pdf IS tracked: it is the submitted manuscript.
+paper_aij/*.aux
+paper_aij/*.bbl
+paper_aij/*.blg
+paper_aij/*.log
+paper_aij/*.out
+paper_aij/*.spl
+paper_aij/preview/
+dist/
+
+# local state / logs (keep the directory, ignore contents)
+.aris/state/*
+.aris/logs/*
+!.aris/state/.gitkeep
+!.aris/logs/.gitkeep
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.zip
+.hf_cache/

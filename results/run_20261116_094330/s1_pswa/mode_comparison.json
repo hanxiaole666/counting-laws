@@ -1,0 +1,52 @@
+{
+  "stage": "s1_pswa",
+  "unit": "mode_comparison",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:43:36Z",
+  "suite_version": "1.0.0",
+  "n": 512,
+  "w": 64,
+  "g": 96,
+  "modes": [
+    {
+      "mode": "full",
+      "nnz": 131328,
+      "rho_mean": 1.0,
+      "eps_mean": 0.0,
+      "peak_tensor_bytes": 757760
+    },
+    {
+      "mode": "sliding",
+      "nnz": 30752,
+      "rho_mean": 0.4113332481153393,
+      "eps_mean": 0.5886667518846607,
+      "peak_tensor_bytes": 261880
+    },
+    {
+      "mode": "longformer_global",
+      "nnz": 32538,
+      "rho_mean": 0.4602165048523629,
+      "eps_mean": 0.5397834951476371,
+      "peak_tensor_bytes": 267032
+    },
+    {
+      "mode": "nsa_like",
+      "nnz": 33370,
+      "rho_mean": 0.46409244773862635,
+      "eps_mean": 0.5359075522613737,
+      "peak_tensor_bytes": 272184
+    },
+    {
+      "mode": "pswa",
+      "nnz": 33370,
+      "rho_mean": 0.46409244773862635,
+      "eps_mean": 0.5359075522613737,
+      "peak_tensor_bytes": 272184
+    }
+  ],
+  "assertions": {
+    "five_distinct_patterns": true
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "stage": "s4_stats",
+  "unit": "inference",
+  "run_id": "run_20261116_094330",
+  "mock": false,
+  "seed": null,
+  "generated_at": "2026-11-16T01:44:49Z",
+  "suite_version": "1.0.0",
+  "delong_gbdt_vs_linear": {
+    "auc_a": 0.866390751812277,
+    "auc_b": 0.7573046292631957,
+    "delta": 0.10908612254908123,
+    "se": 0.007759754595779225,
+    "z": 14.057934590923352,
+    "p_two_sided": 0.0,
+    "ci95": [
+      0.09387700354135395,
+      0.12429524155680852
+    ]
+  },
+  "cluster_bootstrap": {
+    "estimator": "entity-cluster bootstrap of AUC-PR",
+    "point": 0.4551044083830513,
+    "B": 200,
+    "ci95": [
+      0.39631914510055777,
+      0.5205284518882802
+    ],
+    "sd": 0.030056157698161626,
+    "seed": 20261115,
+    "n_entities": 3989
+  },
+  "block_bootstrap": {
+    "estimator": "time-block bootstrap (block_len=512) of AUC-PR",
+    "point": 0.4551044083830513,
+    "B": 200,
+    "ci95": [
+      0.41089288868631246,
+      0.5043437449072773
+    ],
+    "sd": 0.025508063257074665,
+    "seed": 20261115,
+    "n_blocks": 59
+  },
+  "mcnemar": {
+    "b": 572,
+    "c": 338,
+    "n_discordant": 910,
+    "p_exact": 8.076204210387568e-15,
+    "chi2_cc": 59.65824175824176
+  },
+  "holm": {
+    "alpha": 0.05,
+    "raw": [
+      0.0,
+      8.076204210387568e-15
+    ],
+    "adjusted": [
+      0.0,
+      8.076204210387568e-15
+    ],
+    "reject": [
+      true,
+      true
+    ],
+    "method": "Holm-Bonferroni step-down"
+  },
+  "power": {
+    "required_seeds": 32,
+    "delta": 0.006852341908292969,
+    "sd": 0.013704683816585938,
+    "alpha": 0.05,
+    "target_power": 0.8,
+    "formula": "n = ((z_{1-a/2}+z_power)*sd/delta)^2"
+  },
+  "assertions": {
+    "delong_computable": true,
+    "bootstrap_ci_valid": true,
+    "mcnemar_has_discordant_pairs": true,
+    "test_can_be_significant": true
+  }
+}

@@ -1,0 +1,33 @@
+Applied decision systems make two substitutions when resources run short. Long
+sequences get a sparse attention pattern, on the assumption that sparsity buys
+linear cost. Scarce labels get a pretrained language model queried zero-shot, on
+the assumption that scale buys supervision. Neither assumption is usually checked
+against a count. This paper checks both, and finds that the outcome of each
+follows from an integer that can be computed before training starts.
+
+For the mask family that combines a sliding window, $s$ sinks and a periodic set
+of global keys we give an entry law that is exact to the last attention entry, and
+a linearity criterion: the cost is linear in the sequence length if and only if
+the number of keys visible to every query is bounded. Periodic anchors, the
+obvious way to give every position a global view, make that number grow with $n$,
+so the cost grows quadratically. Designs with a fixed global set keep the same
+window and stay linear, and this count is the whole of the difference between the
+two. A second law gives the density a block-granular kernel actually executes,
+$\min(1,B/g)$ plus a window term, which we confirm to three decimals at six
+settings and which inflates the advertised sparsity by up to two orders of
+magnitude.
+
+On a \GpuMemGiB\,GiB GPU at $n=\LargestN$ the anchor variant needs
+$\VramTimesSdpa\times$ the transient memory of fused dense attention and runs
+\LatencySlowdownVsSdpa$\times$ slower. Delete the anchors and the same pattern
+scales linearly in $n$ and finishes \LatSlidingRatio$\times$ faster than the fused
+kernel. The anchors cost the memory. The sparsity does not pay it back.
+
+For the second default, a $0.5$B model reaches AUC-PR \LlmAucPr{} against
+\GbdtSameAucPr{} for gradient-boosted trees on identical held-out rows, and
+low-rank adaptation on \SftRows{} rows removes the parse failures outright
+(\ParseFailZero\% to \SftParseFail\%) while AUC-ROC falls from \LlmAucRoc{} to
+\SftAucRoc. Adaptation repairs the output format and leaves the ranking at chance,
+which puts the binding constraint on the number of labelled rows rather than on
+the interface. We also report three of our own intermediate claims that the audit
+apparatus refuted, including a lemma about block alignment that we withdraw.
