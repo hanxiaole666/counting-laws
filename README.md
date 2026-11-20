@@ -92,18 +92,13 @@ advertised as 0.54% sparse is executed as dense attention.
 No measurement is typed into the LaTeX. The chain is:
 
 ```
-experiments/ ──► results/<run_id>/*.json ──► paper_aij/build_assets.py
-                                                     │
-                                    numbers.tex ◄────┤────► tables/*.tex
-                                          │
-                                      main.tex  ──►  main.pdf
+experiments/ ──► results/<run_id>/*.json 
 ```
 
 Three programs audit that chain, and each answers a different question:
 
 | program | question it answers |
 |---|---|
-| `paper_aij/check_numbers.py` | does a **second, independent derivation** of 51 quantities agree with the values in `numbers.tex`? |
 | `experiments/verify_artifacts.py` | does every result file match its recorded sha256, and was any of it mocked? |
 | `tools/trace.py` | for **any** number in the paper, which JSON field and which function produced it? |
 
@@ -129,7 +124,7 @@ python tools/trace.py --macro VramTimesSdpa
 
 `json_path: "[]"` marks a *derived* quantity: the expression field then shows the
 exact code that combined the two fields, so the derivation is readable rather than
-asserted. `python tools/trace.py` regenerates `paper_aij/TRACEABILITY.md`, a full
+asserted. `python tools/trace.py`, a full
 table of all 277 numbers — value, result file, JSON path, and the file and line
 where the paper uses it. A sample, for the device measurements of Section 6:
 
@@ -147,9 +142,7 @@ where the paper uses it. A sample, for the device measurements of Section 6:
 The trace is computed from the AST of `build_assets.py` and from the `emit()`
 call sites in `experiments/`, so it cannot drift from the code: if you rename a
 field in a result file, `build_assets.py` fails at import, and if you add a macro
-without a source, `tools/trace.py --check` fails. The build is also deterministic:
-re-running `paper_aij/build_assets.py` in a fresh clone leaves `git status` clean,
-so `numbers.tex` in the repository is exactly what the code produces.
+without a source, `tools/trace.py --check` fails. 
 
 ## Reproducing the paper
 
@@ -170,15 +163,9 @@ python -m experiments.run_all                     # resume / skip completed
 python -m experiments.run_all --status            # what is done, what is blocked
 python -m experiments.run_all --force s1_pswa/block_alignment   # invalidate one unit
 
-# 3. numbers, figures, PDF
-python paper_aij/build_assets.py                  # → numbers.tex + 7 tables
-python paper_aij/make_figs.py                     # → 6 vector PDFs
-cd paper_aij && pdflatex main && bibtex main && pdflatex main && pdflatex main
-
-# 4. audits
+# 3. audits
 python -m pytest tests -q
 python -m experiments.verify_artifacts
-python paper_aij/check_numbers.py
 python tools/trace.py --check
 python tools/refresh_readme.py --check            # the blocks above
 ```
@@ -234,9 +221,6 @@ config.yaml                every parameter quoted in the paper, hashed per run
   and a 7B–8B language-model baseline could not be run on the reference machine.
   They are absent from the paper with the command that would unblock them
   (`experiments/run_all.py --status` lists them). Nothing is estimated.
-- **31 prepared but uncited quantities.** `build_assets.py` emits them for the
-  tables and for prose that was cut; `paper_aij/TRACEABILITY.md` lists them by
-  name rather than hiding them, so the size of the number set stays auditable.
 
 ## The three claims the paper withdraws
 
