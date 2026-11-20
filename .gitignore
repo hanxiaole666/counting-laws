@@ -19,14 +19,10 @@
 /paper/BLOCKED.md
 /paper/FIGURE_LEGEND.md
 
-# LaTeX intermediates. main.pdf IS tracked: it is the submitted manuscript.
-paper_aij/*.aux
-paper_aij/*.bbl
-paper_aij/*.blg
-paper_aij/*.log
-paper_aij/*.out
-paper_aij/*.spl
-paper_aij/preview/
+# paper_aij (journal submission sources) is kept locally only and is never
+# uploaded to GitHub. Keep the whole directory out of version control.
+/paper_aij/
+
 dist/
 
 # local state / logs (keep the directory, ignore contents)
