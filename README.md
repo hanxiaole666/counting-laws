@@ -6,7 +6,7 @@ replace a supervised scorer.**
 
 Artefact for the manuscript *Two counting laws for cost-sensitive decision
 systems: anchor-based sparse attention is quadratic, and small language models are
-supervision-bound*, submitted to *Artificial Intelligence* (Elsevier).
+supervision-bound*, submitted to *Journal*.
 
 This repository is small on purpose. The paper's claim is that two integers settle
 questions usually settled by benchmarking, and the code that computes them is
