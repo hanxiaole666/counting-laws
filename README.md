@@ -221,13 +221,6 @@ experiments/               the whole suite, one module per instrumented family
   stages.py stages2.py       the units themselves, one emit() per result file
   verify_artifacts.py        hash and mock checks over every result file
 
-paper_aij/                 the manuscript and everything that feeds it
-  build_assets.py            results → numbers.tex + tables/*.tex (277 macros)
-  check_numbers.py           51 macros re-derived by a second code path
-  make_figs.py              6 vector figures, Type 42 fonts
-  TRACEABILITY.md           generated: every number, its source, its use
-  sections/ tables/ figures/ main.tex refs.bib
-
 results/<run_id>/          one JSON per unit, with assertions and hypotheses
 tests/                     52 tests; each one is a defect that actually occurred
 config.yaml                every parameter quoted in the paper, hashed per run
